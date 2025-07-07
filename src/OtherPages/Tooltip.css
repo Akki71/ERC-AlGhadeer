@@ -1,0 +1,29 @@
+.custom-tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-tooltip .tooltip-inner {
+    visibility: hidden;
+    width: 100px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-top: 5px;
+    margin-left: -50px; /* Adjust as needed */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .custom-tooltip:hover .tooltip-inner {
+    visibility: visible;
+    opacity: 1;
+  }
+  

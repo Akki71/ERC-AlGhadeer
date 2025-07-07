@@ -1,0 +1,67 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination a {
+    color: #9F926D;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #9F926D;
+    border-radius: 3px;
+  }
+  
+  .pagination a:hover {
+    background-color: #9F926D;
+    color: #fff !important;
+  }
+  
+  .pagination .active a {
+    background-color: #9F926D;
+    color: #fff !important;
+  }
+
+  /* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  width: auto;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-top: 5px;
+  margin-left: -50%; /* Adjust based on the width of your tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Show tooltip on hover */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
