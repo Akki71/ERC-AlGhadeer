@@ -52,7 +52,7 @@ const PaymentCallback = () => {
   const bearerToken = localStorage.getItem('bearerToken');
   const searchParams = new URLSearchParams(location.search);
   const resultIndicator = searchParams.get("resultIndicator");
-console.log(mco);
+// console.log(mco);
 
   useEffect(() => {
     if (!UserID) {
@@ -90,13 +90,13 @@ console.log(mco);
   };
 
   const calculateEstimatedShipping = () => {
-    console.log("Shipping charges Data:", shippingData);
+    // console.log("Shipping charges Data:", shippingData);
 
     const shippingAddress = shippingAddresses.find(
       (address) => address.IsDefault
     );
 
-    console.log("Shipping chnage Address:", shippingAddress);
+    // console.log("Shipping chnage Address:", shippingAddress);
 
     if (!shippingData) {
       return 0;
@@ -130,14 +130,14 @@ console.log(mco);
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setUserOrders(data);
         const total = data.reduce((acc, order) => acc + order.TotalAmount, 0);
         setTotalAmount(total);
 
         const idsCSV = data.map((order) => order.OrderId).join(",");
         setOrderIdsCSV(idsCSV);
-        console.log(idsCSV);
+        // console.log(idsCSV);
       })
       .catch((error) => {
         navigate("/login")
@@ -277,10 +277,10 @@ console.log(mco);
       const intervalId = setInterval(() => {
         if (orderIdsCSV) {
           initiateMastercardPayment();
-          console.log("Order IDs CSV:", orderIdsCSV);
+          // console.log("Order IDs CSV:", orderIdsCSV);
           clearInterval(intervalId);
         } else {
-          console.log("Waiting for orderIdsCSV to be set...");
+          // console.log("Waiting for orderIdsCSV to be set...");
         }
       }, 1000); 
 
@@ -333,7 +333,7 @@ console.log(mco);
       MastercardOrderId: mco,
     };
 
-    console.log(payload);
+    // console.log(payload);
     fetch(`${BASE_PATH}Order/CreateOrderInvoice`, {
       method: "POST",
       headers: {
@@ -382,7 +382,7 @@ console.log(mco);
             "Content-Type": "application/json"
           }
         });
-        console.log("Payment marked as successful:", updatePaymentResponse.status);
+        // console.log("Payment marked as successful:", updatePaymentResponse.status);
     
 
         return true;
@@ -411,10 +411,10 @@ console.log(mco);
       }
 
       const orderData = await response.json();
-      console.log(orderData);
+      // console.log(orderData);
       
       // setOrderDetails(orderData);
-      console.log("Order details retrieved:", orderData);
+      // console.log("Order details retrieved:", orderData);
     } catch (error) {
       console.error("Error retrieving order details:", error);
     }

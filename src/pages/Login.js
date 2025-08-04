@@ -22,23 +22,57 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const { language } = useLanguage();
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    });
-    if (name === "EmailId") {
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+
+  // Update input value
+  setCredentials((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+
+  // Clear errors immediately when user starts typing
+  if (name === "Password") {
+    setPasswordError("");
+    setErrorMessage("");
+  }
+
+  if (name === "EmailId") {
+    setEmailError("");
+    setErrorMessage("");
+
+  }
+
+  // Required field validation
+  if (name === "EmailId") {
+    if (value === "") {
+      setEmailError(
+        language === "en"
+          ? "Email is required."
+          : "البريد الإلكتروني مطلوب"
+      );
+    } else {
+      // Live validation for email format
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       setEmailError(
         emailRegex.test(value)
           ? ""
           : language === "en"
           ? "Please enter a valid email address."
-          : "يرجى ادخال  عنوان بريد إلكتروني متاح"
+          : "يرجى ادخال عنوان بريد إلكتروني متاح"
       );
     }
-    if (name === "Password") {
+  }
+
+  if (name === "Password") {
+    if (value === "") {
+      setPasswordError(
+        language === "en"
+          ? "Password is required."
+          : "كلمة المرور مطلوبة"
+      );
+    } else {
+      // Live validation for password length
       setPasswordError(
         value.length >= 8
           ? ""
@@ -47,13 +81,22 @@ const Login = () => {
           : "كلمة السر لا تقل عن 8 رموز"
       );
     }
-  };
+  }
+};
+
+
   const handlePasswordVisibilityforNewPassword = () => {
     setPasswordVisible(!PasswordVisible);
   };
   const handleLogin = async (e) => {
+
+    // console.log("sdhfglsduifhsoif");
+    
     e.preventDefault();
     if (!credentials.EmailId || !credentials.Password) {
+
+    // console.log("sdhfglsduifhsoif");
+
       setErrorMessage(
         language === "en"
           ? "Please fill in both email and password."
@@ -285,10 +328,11 @@ const Login = () => {
                         required
                       />
                       {emailError && (
-                        <div className="invalid-feedback">{emailError}</div>
+                        <div className="text-danger mt-1">{emailError}</div>
                       )}
                     </div>
                     <div className="form-group">
+                      <div className="position-relative">
                       <input
                         type={PasswordVisible ? "text" : "password"} // Change "Password" to "password"
                         placeholder={
@@ -302,15 +346,23 @@ const Login = () => {
                         onChange={handleInputChange}
                         required
                       />
-                      {passwordError && (
-                        <div className="invalid-feedback">{passwordError}</div>
-                      )}
-                      <div
-                        className="input-group-text"
-                        onClick={handlePasswordVisibilityforNewPassword}
-                      >
-                        {PasswordVisible ? <Eye /> : <EyeSlash />}
-                      </div>
+                   
+                  
+                    <div
+                      className="input-group-text"
+                      onClick={handlePasswordVisibilityforNewPassword}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {PasswordVisible ? <Eye /> : <EyeSlash />}
+                    </div>
+                </div>
+
+                  {passwordError && (
+                    <div className="text-danger mt-1">{passwordError}</div>
+                  )}
+  {errorMessage && (
+                      <div className="text-danger mt-1">{errorMessage}</div>
+                    )}
                     </div>
 
                     {errorMessage && (

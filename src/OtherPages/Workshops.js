@@ -13,7 +13,7 @@ const Workshops = () => {
 const fetchData = async () => {
   try {
     const token = localStorage.getItem("token");
-    console.log("Token retrieved from localStorage:", token);
+    // console.log("Token retrieved from localStorage:", token);
 
     const response = await fetch(
       `${BASE_PATH}Page/GetPageByName?pageName=workshop`,
@@ -27,17 +27,17 @@ const fetchData = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("Raw API response data:", data);
+      // console.log("Raw API response data:", data);
 
       if (Array.isArray(data)) {
         data.forEach((page) => {
           if (page.SectionModels && Array.isArray(page.SectionModels)) {
             page.SectionModels.forEach((section) => {
-              console.log("Section Name:", section.SectionName);
+              // console.log("Section Name:", section.SectionName);
 
               if (Array.isArray(section.LabelModels)) {
                 section.LabelModels.forEach((label) => {
-                  console.log("Label Name:", label.LabelName);
+                  // console.log("Label Name:", label.LabelName);
                 });
               } else {
                 console.warn(
@@ -164,7 +164,7 @@ const fetchData = async () => {
                 </div>
 
                 <div className=" container">
-                  <div class="row rowGap-30 cstRow">
+                  <div className="row rowGap-30 cstRow">
                   <div className="row">
   {responseData && responseData.length > 0 ? (
     responseData.map((page, pageIndex) =>
@@ -229,7 +229,7 @@ const fetchData = async () => {
   )}
 </div>
                     {/* <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/talli-braclate-making.jpg")}
@@ -237,7 +237,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Talli Braclate Making"
                               : "صنع أسوارة التلي"}
@@ -260,7 +260,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/drawing-on-tote-bag.jpg")}
@@ -268,7 +268,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Drawing on Tote Bag"
                               : "الرسم على حقيبة قماشية"}
@@ -290,7 +290,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/planting-in-a-khoos-basket.jpg")}
@@ -298,7 +298,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Planting in a Khoos Basket"
                               : "صناعة الطربوش"}
@@ -320,7 +320,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/sadu-braclate-making.jpg")}
@@ -328,7 +328,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Sadu Braclate Making"
                               : "صنع أسوارة السدو"}
@@ -350,7 +350,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/dye-fabric-with-natural.jpg")}
@@ -358,7 +358,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Dye Fabric with Natural Materials"
                               : "صبغ القماش بمواد طبيعية"}
@@ -380,7 +380,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/planting-in-a-khoos-basket-2.jpg")}
@@ -388,7 +388,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Planting in a Khoos Basket"
                               : "صناعة الطربوش"}
@@ -410,7 +410,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/making-coasters-with-talli.jpg")}
@@ -418,7 +418,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Making Coasters with Talli"
                               : "صناعة قاعدة أكواب بالتلي"}
@@ -441,7 +441,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/suhail-star-with-khous.jpg")}
@@ -449,7 +449,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Suhail Star with Khous"
                               : "نجم سهيل بالخوص"}
@@ -472,7 +472,7 @@ const fetchData = async () => {
                     </div>
 
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/sadu-chams.jpg")}
@@ -480,7 +480,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Sadu Chams"
                               : "ميداليات السدو"}
@@ -502,7 +502,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/making-and-casting-candles.jpg")}
@@ -510,7 +510,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Making and Casting Candles"
                               : "صناعة قاعدة أكواب بالتلي"}
@@ -532,7 +532,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/khous-charms.jpg")}
@@ -540,7 +540,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Khous Charms (Camels / Birds)"
                               : "صناعة ميدليات الخوص (جمال / طيور)"}
@@ -563,7 +563,7 @@ const fetchData = async () => {
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                      <div class="workshopCard">
+                      <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
                             src={require("../assets/images/al-ghadeer-1/burqa-making.jpg")}
@@ -571,7 +571,7 @@ const fetchData = async () => {
                           />
                         </div>
                         <div className="workshopText">
-                          <div class=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
+                          <div className=" f-s-30 font-Lyon mrg-b-5 line_H_1_2">
                             {language === "en"
                               ? "Burqa Making"
                               : "صناعة براقع"}

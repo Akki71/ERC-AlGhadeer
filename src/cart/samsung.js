@@ -72,7 +72,7 @@ const SamsungPay = () => {
 
       client.loadPaymentSheet(paymentMethods, transactionDetail)
         .then((paymentCredential) => {
-          console.log("Payment Credential:", paymentCredential);
+          // console.log("Payment Credential:", paymentCredential);
 
           const paymentResult = {
             status: "CHARGED",

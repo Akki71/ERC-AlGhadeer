@@ -14,10 +14,10 @@ const OurProduct = () => {
  
 const { language } = useLanguage();
 const { id, categoryNameE } = useParams();
-console.log(categoryNameE);
+// console.log(categoryNameE);
   const [allCategory, setAllCategory] = useState([]);
   const onedata = allCategory.find((cat) => cat.CategoryNameE === "Sadu")
-  console.log(onedata);
+  // console.log(onedata);
 useEffect(() => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }, [id]);

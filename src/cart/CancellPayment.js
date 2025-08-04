@@ -7,7 +7,7 @@ import axios from "axios";
 import { useLanguage } from "../redux/LanguageContext";
 import BASE_PATH from "../serviceurls";
 const CancellPayment = ({total}) => {
-console.log("Total Amount:", total);
+// console.log("Total Amount:", total);
     const { language } = useLanguage();
     const [showModal, setShowModal] = useState(false);
     const [email, setEmail] = useState("");
@@ -86,12 +86,12 @@ console.log("Total Amount:", total);
         return subtotal;
     };
     const calculateEstimatedShipping = () => {
-        console.log("Shipping charges Data:", shippingData);
+        // console.log("Shipping charges Data:", shippingData);
 
         const shippingAddress = shippingAddresses.find(
             (address) => address.IsDefault
         ); // Find the default shipping address
-        console.log("Shipping chnage Address:", shippingAddress);
+        // console.log("Shipping chnage Address:", shippingAddress);
 
         if (!shippingData) {
             return 0;
@@ -125,14 +125,14 @@ console.log("Total Amount:", total);
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setUserOrders(data);
                 const total = data.reduce((acc, order) => acc + order.TotalAmount, 0);
                 setTotalAmount(total);
 
                 const idsCSV = data.map((order) => order.OrderId).join(",");
                 setOrderIdsCSV(idsCSV);
-                console.log(idsCSV);
+                // console.log(idsCSV);
             })
             .catch((error) => {
                 navigate("/login")
@@ -265,10 +265,10 @@ console.log("Total Amount:", total);
             const intervalId = setInterval(() => {
                 if (orderIdsCSV) {
                     initiateMastercardPayment();
-                    console.log("Order IDs CSV:", orderIdsCSV);
+                    // console.log("Order IDs CSV:", orderIdsCSV);
                     clearInterval(intervalId);
                 } else {
-                    console.log("Waiting for orderIdsCSV to be set...");
+                    // console.log("Waiting for orderIdsCSV to be set...");
                 }
             }, 1000); // Check every second
 
@@ -333,7 +333,7 @@ console.log("Total Amount:", total);
 
 
         };
-        console.log(payload);
+        // console.log(payload);
 
 
         fetch(`${BASE_PATH}Order/CreateOrderInvoice`, {

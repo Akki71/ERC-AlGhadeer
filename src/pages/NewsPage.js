@@ -94,6 +94,7 @@ const NewsPage = () => {
     );
 
     return (
+      
       <div className="row">
         {newsItems
           .filter(newsItem => newsItem.SrNo !== parseInt(id)) // Hide the current news item
@@ -135,21 +136,21 @@ const NewsPage = () => {
                           <Link to={`/newsdetails/${newsItem.SrNo}`}>
                           <li className="row mrg-b-30" key={newsItem.SrNo}>
                             <div className="col-6">
-                              <div className="recentBlogImg">
-                                <Link to={`/newsdetails/${newsItem.SrNo}`} className="d-block">
+                              <div className="recentBlogImg d-block">
+                              
                                   <img
                                     src={newsItem.ImagePath}
                                     className="w-100"
                                     alt={newsItem.Title}
                                   />
-                                </Link>
+                               
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="recentBlog_title">
-                                <Link to={`/newsdetails/${newsItem.SrNo}`} className="primary-clr line_H_1_2 d-block">
+                              <div className="recentBlog_title primary-clr line_H_1_2 d-block">
+                               
                                   {newsItem.Title}
-                                </Link>
+                                
                               </div>
                             </div>
                           </li>
@@ -159,19 +160,19 @@ const NewsPage = () => {
                   </ul>
                 </div>
               </div>
-              <div className="recentblog_bx mrg-b-30">
+              {/* <div className="recentblog_bx mrg-b-30">
                 <div className="rightside_title f-w-B font-Lyon f-s-20 mrg-b-10 text-uppercase">
                   {language === "en" ? "SEARCH BY TAGS" : "ابحث بالكلمات"}
                 </div>
                 <div className="taglist_wrap">
                   <ul className="list-inline mb-0">
-                    {/* Placeholder tags */}
+                  
                     <li className="list-inline-item"><a className="primary-clr">Lorem ipsum</a></li>
                     <li className="list-inline-item"><a className="primary-clr">dolor sit amet</a></li>
                     <li className="list-inline-item"><a className="primary-clr">consectetur</a></li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

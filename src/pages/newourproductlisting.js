@@ -403,7 +403,7 @@ const OurproductScreen = (category) => {
   };
 
 
-console.log();
+// console.log();
 
   useEffect(() => {
     if (products.length > 0) {

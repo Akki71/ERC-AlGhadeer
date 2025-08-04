@@ -106,7 +106,7 @@ const OurproductScreen = (category) => {
         }
 
         const cartData = await cartResponse.json();
-        console.log('cartData',cartData);
+        // console.log('cartData',cartData);
         
         setData(cartData.length);
       } catch (error) {
@@ -141,7 +141,7 @@ const OurproductScreen = (category) => {
         }
 
         const cartData = await cartResponse.json();
-        console.log("cartData2", cartData);
+        // console.log("cartData2", cartData);
         setData(cartData.length);
       } catch (error) {
         console.error("Error fetching data:", error);

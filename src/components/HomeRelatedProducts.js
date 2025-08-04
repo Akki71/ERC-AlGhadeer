@@ -52,7 +52,7 @@ function HomeRelatedProducts() {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Error fetching wishlist data:", error);
+      // console.error("Error fetching wishlist data:", error);
     }
   };
   var settings = {
@@ -209,11 +209,11 @@ function HomeRelatedProducts() {
         }
     
         const data = await response.json();
-        console.log("ALL PRODUCTS:", data);
+        // console.log("ALL PRODUCTS:", data);
     
       
         const bestSellers = data.filter(product => product.IsBestSeller === true);
-        console.log("BESTSELLER PRODUCTS:", bestSellers);
+        // console.log("BESTSELLER PRODUCTS:", bestSellers);
     
         setProducts(bestSellers); 
         setLoading(false);

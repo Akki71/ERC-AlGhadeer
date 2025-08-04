@@ -83,9 +83,6 @@ const AboutUs = () => {
                 data-aos="fade-up"
                 data-aos-delay={300}
               >
-             
-
-               
                 <div className="secTitle f-s-30 font-Lyon "
                  dangerouslySetInnerHTML={{
                   __html:

@@ -53,6 +53,7 @@ import NewsPage, { News } from "./pages/NewsPage";
 import NewsDetails from "./OtherPages/NewsDetails";
 import CheckoutGuest from "./cart/CheckoutGuest";
 import AOSHandler from "./AOSHandler";
+import ResetPassword from "./pages/ResetPassword";
 // import { Newspaper } from "react-bootstrap-icons";
 // import { useLanguage } from '../redux/LanguageContext';
  
@@ -118,6 +119,7 @@ const App = () => {
                   <Route path="/dashboardnav" element={<DashboardNav />} />
                   <Route path="/orderlist" element={<OrderList />} />
                   <Route path="/address" element={<Address />} />
+                   <Route path="/reset-password" element={<ResetPassword />} />
                   <Route path="/contactus" element={<ContactUs />} />
                   <Route path="/aboutus" element={<AboutUs />} />
                   <Route path="/whatweoffer" element={<WhatweOffer />} />

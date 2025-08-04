@@ -7,7 +7,7 @@ import axios from "axios";
 import { useLanguage } from "../redux/LanguageContext";
 import BASE_PATH from "../serviceurls";
 const BeforePayment = ({mcoid,total}) => {
-    console.log("Total Amount:", total);
+    // console.log("Total Amount:", total);
     const { language } = useLanguage();
     const [showModal, setShowModal] = useState(false);
     const [email, setEmail] = useState("");
@@ -86,12 +86,12 @@ const BeforePayment = ({mcoid,total}) => {
         return subtotal;
     };
     const calculateEstimatedShipping = () => {
-        console.log("Shipping charges Data:", shippingData);
+        // console.log("Shipping charges Data:", shippingData);
 
         const shippingAddress = shippingAddresses.find(
             (address) => address.IsDefault
         ); // Find the default shipping address
-        console.log("Shipping chnage Address:", shippingAddress);
+        // console.log("Shipping chnage Address:", shippingAddress);
 
         if (!shippingData) {
             return 0;
@@ -124,14 +124,14 @@ const BeforePayment = ({mcoid,total}) => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setUserOrders(data);
                 const total = data.reduce((acc, order) => acc + order.TotalAmount, 0);
                 setTotalAmount(total);
 
                 const idsCSV = data.map((order) => order.OrderId).join(",");
                 setOrderIdsCSV(idsCSV);
-                console.log(idsCSV);
+                // console.log(idsCSV);
             })
             .catch((error) => {
                 navigate("/login")
@@ -269,10 +269,10 @@ const BeforePayment = ({mcoid,total}) => {
             const intervalId = setInterval(() => {
                 if (orderIdsCSV) {
                     initiateMastercardPayment();
-                    console.log("Order IDs CSV:", orderIdsCSV);
+                    // console.log("Order IDs CSV:", orderIdsCSV);
                     clearInterval(intervalId);
                 } else {
-                    console.log("Waiting for orderIdsCSV to be set...");
+                    // console.log("Waiting for orderIdsCSV to be set...");
                 }
             }, 1000); // Check every second
 
@@ -294,7 +294,7 @@ const BeforePayment = ({mcoid,total}) => {
         mcoid
 
     ]);
-    console.log(mcoid);
+    // console.log(mcoid);
     const paymentStatus = localStorage.getItem('paymentStatus');
     const initiateMastercardPayment = () => {
         setLoading(false);
@@ -335,8 +335,8 @@ const BeforePayment = ({mcoid,total}) => {
             isPaymentIncompleteOrCancelled:'true'
 
         };
-        console.log(payload);
-        console.log(mcoid);
+        // console.log(payload);
+        // console.log(mcoid);
 
         fetch(`${BASE_PATH}Order/CreateOrderInvoice`, {
             method: "POST",

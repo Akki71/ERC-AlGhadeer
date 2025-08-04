@@ -511,7 +511,7 @@
 import React, { useEffect, useState } from "react";
 
 const ApplePayButton = ({ calculateTotal }) => {
-  console.log('Total calculated:', calculateTotal);
+  // console.log('Total calculated:', calculateTotal);
   const [isSdkLoaded, setIsSdkLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isPaymentRequestOpen, setIsPaymentRequestOpen] = useState(false);
@@ -521,7 +521,7 @@ const ApplePayButton = ({ calculateTotal }) => {
     const checkApplePaySdk = () => {
       if (window.ApplePaySession) {
         setIsSdkLoaded(true);
-        console.log("Apple Pay SDK loaded successfully.");
+        // console.log("Apple Pay SDK loaded successfully.");
       } else {
         setIsSdkLoaded(false);
         setErrorMessage("Apple Pay SDK not loaded.");
@@ -558,13 +558,13 @@ const ApplePayButton = ({ calculateTotal }) => {
 
       session.onvalidatemerchant = (event) => {
         // You would call your server here to validate the merchant
-        console.log("Merchant validated:", event);
+        // console.log("Merchant validated:", event);
         session.completeMerchantValidation({ merchantIdentifier: "dummyMerchant" });
       };
 
       session.onpaymentauthorized = (event) => {
         // Here, you can simulate a successful payment
-        console.log("Payment authorized:", event.payment);
+        // console.log("Payment authorized:", event.payment);
         session.completePayment(window.ApplePaySession.STATUS_SUCCESS);
       };
 

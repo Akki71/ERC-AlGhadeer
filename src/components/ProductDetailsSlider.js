@@ -50,7 +50,7 @@ function ProductsDetails() {
         setLoader(false);
  
         const product = data.find(product => product.ProductId.toString() === id);
- console.log("product",product);
+//  console.log("product",product);
  
         if (product) {
           const firstSize = product.ProductSizeList[0];
@@ -444,7 +444,7 @@ function ProductsDetails() {
           productImages = []; // Handle the case where parsing fails
         }
   
-        console.log("Default selected color image count:", productImages ? productImages.length : 0);
+        // console.log("Default selected color image count:", productImages ? productImages.length : 0);
       }
     }
   }, [selectedSizeIndex, mainProducts, id]);
@@ -496,7 +496,7 @@ function ProductsDetails() {
   
               try {
                 imagePaths = JSON.parse(color.ProductImagePath);
-                console.log(imagePaths);
+                // console.log(imagePaths);
                 
               } catch (error) {
                 console.error("Error parsing ProductImagePath:", error);

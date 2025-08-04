@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../redux/LanguageContext";
-import BASE_PATH from "../serviceurls";
+import BASE_PATH, { ERC_ReCAPTCHA } from "../serviceurls";
 import ReCAPTCHA from "react-google-recaptcha";
 import Loader from "../components/Loader";
  
@@ -72,7 +72,7 @@ const Joinus = () => {
  
   const onChangerecaptcha = (value) => {
     setCaptchaValue(value);
-    console.log("Captcha value:", value);
+    // console.log("Captcha value:", value);
     if (value) {
       Sendtoapi();
     } else {
@@ -89,7 +89,7 @@ const Joinus = () => {
     e.preventDefault();
     if (validateForm()) {
       setShowReCAPTCHA(true);
-      console.log("Form Data:", formData);
+      // console.log("Form Data:", formData);
     }
   };
  
@@ -120,7 +120,7 @@ const Joinus = () => {
  
       if (response.ok) {
         const data = await response.json();
-        console.log("API Response:", data);
+        // console.log("API Response:", data);
         alert(
           language === "en"
             ? "Form submitted successfully!"
@@ -173,7 +173,7 @@ const Joinus = () => {
       }
       const result = await response.json();
       // console.log("resultttt", result[0])
-      console.log("resultttt", result[0].SectionModels[0].LabelModels[0].MediaPath);
+      // console.log("resultttt", result[0].SectionModels[0].LabelModels[0].MediaPath);
       // src={Data[0].SectionModels[1].LabelModels[0].MediaPath}
       setLoading(false);
       setData(result)
@@ -181,7 +181,7 @@ const Joinus = () => {
       console.error("Error fetching invoice details:", error);
     }
   };
-console.log("hihihihihi",Data);
+// console.log("hihihihihi",Data);
  
  
   return (
@@ -392,14 +392,14 @@ console.log("hihihihihi",Data);
                     )}
                   </div>
                   {showReCAPTCHA ? (
-        <ReCAPTCHA sitekey="6Lfd6D0rAAAAAB2sJs7KnDr1pYnIcU9YAYeqtvCG" onChange={onChangerecaptcha} />
-      ) : (
-        <div className="formGroup">
-          <button type="submit" onClick={modaldataforcheck} className="contactSubmit font-Lyon clr-pink-light">
-            {language === "en" ? "Submit" : "تقديم"}
-          </button>
-        </div>
-      )}
+                  <ReCAPTCHA   sitekey={ERC_ReCAPTCHA} onChange={onChangerecaptcha} />
+                ) : (
+                  <div className="formGroup">
+                    <button type="submit" onClick={modaldataforcheck} className="contactSubmit font-Lyon clr-pink-light">
+                      {language === "en" ? "Submit" : "تقديم"}
+                    </button>
+                  </div>
+                )}
                 </form>
                 <div>
                   {/* <button className="contactSubmit font-Lyon clr-pink-light">

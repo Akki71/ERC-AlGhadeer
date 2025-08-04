@@ -107,7 +107,7 @@ const SubCategory = () => {
 
           if (isMounted) {
             setMainProducts(response.data);
-            console.log("Products data:", response.data);
+            // console.log("Products data:", response.data);
           }
         }
       } catch (error) {

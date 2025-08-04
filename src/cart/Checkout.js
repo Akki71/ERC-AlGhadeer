@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { JSEncrypt } from 'jsencrypt';
 import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import { DataContext } from "../utils/ApiContext";
-import BASE_PATH from "../serviceurls";
+import BASE_PATH, { ERC_ReCAPTCHA } from "../serviceurls";
 import axios from "axios";
 import Loader from "../components/Loader"; // Import your Loader component
 import { useLanguage } from "../redux/LanguageContext";
@@ -15,6 +16,7 @@ import applePayLogo from "../assets/images/apple128.png";
 import pngegg from "../assets/images/pngegg.png";
 
 import "./ApplePayButton.css";
+import { decryptData, encryptData } from "../utils/crypto";
 /* global ApplePaySession */
 const cors = require("cors")({ orgin: true });
 const Checkout = () => {
@@ -222,7 +224,7 @@ const Checkout = () => {
         },
         order: {
           currency: "AED",
-          amount: calculateTotal(),
+          amount: calculateTotal().toFixed(2),
           id: mco,
           description: "ERC CRAFTS",
         },
@@ -245,12 +247,16 @@ const Checkout = () => {
       },
     };
 
-    console.log("Mastercard API request data:", data);
+    // console.log("Mastercard API request data:", data);
+  const encrypted = encryptData(data);
 
+    const payload = {
+      EncryptedData: encrypted
+    };
     try {
       const response = await axios.post(
         `${BASE_PATH}Security/GetSessionIdFromMasterCard`,
-        data,
+        payload,
         {
           headers: {
             // Authorization: `Bearer ${tokenlogin}`,
@@ -259,7 +265,11 @@ const Checkout = () => {
         }
       );
 
-      const sessionId = response.data.SessionId;
+    const encryptedResponse = response.data;
+    const decrypted = decryptData(encryptedResponse); 
+
+    const sessionId = decrypted?.SessionId;
+
       if (sessionId) {
         if (
           window.isMastercardScriptLoaded &&
@@ -415,7 +425,7 @@ const Checkout = () => {
 
     const shippingAddress = shippingAddresses.find(
       (address) => address.IsDefault
-    ); // Find the default shipping address
+    ); // Find the default shipping addressS
     // console.log("Shipping chnage Address:", shippingAddress);
 
     if (!shippingData) {
@@ -830,29 +840,28 @@ const Checkout = () => {
     };
 
     try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json-patch+json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(requestData),
-      });
+  const encrypted = encryptData(requestData);
 
-      // console.log("Response Status:", response.status);
+    const payload = {
+      EncryptedData: encrypted
+    };
+    const response = await axios.post(apiUrl, payload, {
+  headers: {
+    "Content-Type": "application/json-patch+json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+});
 
-      const result = await response.json();
-      // console.log("Response JSON:", result);
-
+      const encryptedResponse = await response.data; 
+      const result = decryptData(encryptedResponse);   
       if (result.HasErrors) {
         console.error("API Error:", result);
         setError("An error occurred while calculating the rate.");
       } else {
         const totalValue = result.TotalAmount.Value;
         setTotalAmountesatamtied(totalValue);
-        // console.log("Total Amount (Value):", totalValue);
-        // console.log("Rate Details:", result);
+     
         setRateDetails({
           totalAmount: result.TotalAmount,
           rateDetails: result.RateDetails,
@@ -1270,7 +1279,7 @@ const Checkout = () => {
   // }, []);
 
   useEffect(() => {
-    console.log(calculateTotal());
+    // console.log(calculateTotal());
 
     if (window.ApplePaySession) {
       ApplePaySession.canMakePaymentsWithActiveCard(
@@ -1288,13 +1297,13 @@ const Checkout = () => {
   }, []);
 
   const onApplePayButtonClicked = async () => {
-    console.log(calculateTotal());
+    // console.log(calculateTotal());
 
     if (!window.ApplePaySession) {
       console.error("Apple Pay is not supported in this browser.");
       return;
     }
-    console.log(calculateTotal());
+    // console.log(calculateTotal());
 
     const request = {
       countryCode: "AE",
@@ -1337,11 +1346,11 @@ const Checkout = () => {
         }
 
         const masterToken = event.payment.token.paymentData;
-        console.log("Master Token:", masterToken);
-        console.log(
-          "Apple Pay Payment Token:",
-          JSON.stringify(masterToken, null, 2)
-        );
+        // console.log("Master Token:", masterToken);
+        // console.log(
+        //   "Apple Pay Payment Token:",
+        //   JSON.stringify(masterToken, null, 2)
+        // );
 
         const response = await sendPaymentDataToBackend(
           masterToken,
@@ -1361,7 +1370,7 @@ const Checkout = () => {
     };
 
     session.oncancel = () => {
-      console.log("Apple Pay session canceled");
+      // console.log("Apple Pay session canceled");
     };
 
     session.begin(); // Must be triggered directly by a user gesture
@@ -1369,12 +1378,12 @@ const Checkout = () => {
 
   const validateMerchant = async (validationURL) => {
     try {
-      console.log("Validating merchant with URL:", validationURL);
+      // console.log("Validating merchant with URL:", validationURL);
 
       const requestBody = new URLSearchParams({
         ValidationURL: validationURL,
       }).toString();
-      console.log("Request Body:", requestBody);
+      // console.log("Request Body:", requestBody);
 
       const response = await fetch(
         `${BASE_PATH}Security/Validate/applepay/validate`,
@@ -1389,7 +1398,7 @@ const Checkout = () => {
         }
       );
 
-      console.log("Response Status:", response.status);
+      // console.log("Response Status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -1398,7 +1407,7 @@ const Checkout = () => {
       }
 
       const responseData = await response.json();
-      console.log("Merchant Validation Response Data:", responseData);
+      // console.log("Merchant Validation Response Data:", responseData);
 
       return responseData;
     } catch (error) {
@@ -1415,10 +1424,10 @@ const Checkout = () => {
   ) => {
     initiateMastercardPaymentBeforeApple(mco);
     try {
-      console.log("Initiating payment with details:");
-      console.log("PaymentToken:", paymentToken);
-      console.log("Amount:", amount);
-      console.log("MCO:", mco);
+      // console.log("Initiating payment with details:");
+      // console.log("PaymentToken:", paymentToken);
+      // console.log("Amount:", amount);
+      // console.log("MCO:", mco);
 
       const TransactionIddumy = Math.floor(
         10000000 + Math.random() * 90000000
@@ -1430,8 +1439,8 @@ const Checkout = () => {
         TransactionId: TransactionIddumy,
       };
 
-      console.log("Request Body:", requestData);
-      console.log("JSON DATA", JSON.stringify(requestData));
+      // console.log("Request Body:", requestData);
+      // console.log("JSON DATA", JSON.stringify(requestData));
 
       const response = await fetch(
         `${BASE_PATH}Security/PutAppleMasterCardPayment`,
@@ -1446,7 +1455,7 @@ const Checkout = () => {
         }
       );
 
-      console.log("Response Status:", response.status);
+      // console.log("Response Status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -1457,16 +1466,16 @@ const Checkout = () => {
       }
 
       const responseData = await response.json();
-      console.log("Payment Response Data:", responseData);
+      // console.log("Payment Response Data:", responseData);
 
       if (responseData.Order?.Status === "CAPTURED") {
         setLoading(true);
-        console.log("Payment Successful!");
+        // console.log("Payment Successful!");
 
         const receiptNumber = responseData.Transaction?.Receipt; // Extract receipt number
 
         if (receiptNumber) {
-          console.log("receiptNumber", receiptNumber);
+          // console.log("receiptNumber", receiptNumber);
 
           initiateMastercardPaymentAppple(receiptNumber, mco); // Pass receipt number
         } else {
@@ -1477,7 +1486,7 @@ const Checkout = () => {
         return "Success";
       } else {
         initiateMastercardPaymentCancelApple(mco);
-        console.log("Payment Failed or Pending:", responseData.Order?.Status);
+        // console.log("Payment Failed or Pending:", responseData.Order?.Status);
         session.completePayment(ApplePaySession.STATUS_FAILURE);
         return responseData;
       }
@@ -1528,7 +1537,7 @@ const Checkout = () => {
       MastercardOrderId: mco,
     };
 
-    console.log(payload);
+    // console.log(payload);
     fetch(`${BASE_PATH}Order/CreateOrderInvoice`, {
       method: "POST",
       headers: {
@@ -1601,7 +1610,7 @@ const Checkout = () => {
 
       MastercardOrderId: mco,
     };
-    console.log(payload);
+    // console.log(payload);
 
     fetch(`${BASE_PATH}Order/CreateOrderInvoice`, {
       method: "POST",
@@ -1633,7 +1642,7 @@ const Checkout = () => {
 
   const markPaymentAsSuccessful = async (mco) => {
     const isPaymentConfirmed = true; // This should be determined by your payment gateway
-    console.log("mco", mco);
+    // console.log("mco", mco);
     if (isPaymentConfirmed) {
       try {
         const updatePaymentResponse = await axios.post(
@@ -1648,10 +1657,10 @@ const Checkout = () => {
             },
           }
         );
-        console.log(
-          "Payment marked as successful:",
-          updatePaymentResponse.status
-        );
+        // console.log(
+        //   "Payment marked as successful:",
+        //   updatePaymentResponse.status
+        // );
         localStorage.removeItem("mco");
         localStorage.removeItem("bearerToken");
         localStorage.removeItem("paymentStatus");
@@ -1670,8 +1679,8 @@ const Checkout = () => {
       billingAddresses.find((address) => address.IsDefault) || null;
     const shippingAddress =
       shippingAddresses.find((address) => address.IsDefault) || null;
-    console.log("billingAddress", billingAddress);
-    console.log("Shpping ADD", shippingAddress);
+    // console.log("billingAddress", billingAddress);
+    // console.log("Shpping ADD", shippingAddress);
     const payload = {
       // TransactionId: "T-0001" + Math.floor(100000 + Math.random() * 900000),
 
@@ -2048,7 +2057,7 @@ const Checkout = () => {
                     <div className="form-group compact-form-group">
                       {showReCAPTCHA ? (
                         <ReCAPTCHA
-                          sitekey="6Lfd6D0rAAAAAB2sJs7KnDr1pYnIcU9YAYeqtvCG"
+                            sitekey={ERC_ReCAPTCHA}
                           onChange={onChangerecaptcha}
                         />
                       ) : (

@@ -4,13 +4,14 @@ import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Modal";
 import { DataContext } from "../utils/ApiContext";
-import BASE_PATH from "../serviceurls";
+import BASE_PATH, { ERC_ReCAPTCHA } from "../serviceurls";
 import axios from "axios";
 import Loader from "../components/Loader"; // Import your Loader component
 import { useLanguage } from "../redux/LanguageContext";
 import BeforePayment from "./BeforePayment";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useLocation } from "react-router-dom";
+import { decryptData, encryptData } from "../utils/crypto";
 const cors = require("cors")({ orgin: true });
 
 const CheckoutGuest = () => {
@@ -42,7 +43,7 @@ const CheckoutGuest = () => {
 
   useEffect(() => {
     const guestProducts = JSON.parse(localStorage.getItem("guestProduct")) || [];
-    console.log("guestProducts", guestProducts);
+    // console.log("guestProducts", guestProducts);
 
     const totalWeight = guestProducts.reduce(
       (acc, product) => acc + (product.Weight || 0) * (product.OrderQuantity || 1),
@@ -55,17 +56,17 @@ const CheckoutGuest = () => {
     );
 
     setalltotalweight(totalWeight);
-    console.log("Total Weight:", totalWeight);
+    // console.log("Total Weight:", totalWeight);
 
     SetOrderQuantity(totalOrderQuantity);
-    console.log("Total Order Quantity:", totalOrderQuantity);
+    // console.log("Total Order Quantity:", totalOrderQuantity);
   }, []);
 
 
 
   const fetchRateDetails = async () => {
 
-    console.log('function called');
+    // console.log('function called');
 
     // const shippingAddress =
     //   shippingAddresses.find((address) => address.IsDefault) || null;
@@ -157,25 +158,28 @@ const CheckoutGuest = () => {
       },
       Transaction: null,
     };
-    console.log(requestData);
+    // console.log(requestData);
     // const totalValue = 200;
     // setTotalAmountesatamtied(totalValue);
     // setShowModalModal(true);
     try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json-patch+json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(requestData),
-      });
+          //  const { encryptedData } = hybridEncryptForBackend(requestData);
 
-      console.log("Response Status:", response.status);
+  const encrypted = encryptData(requestData);
 
-      const result = await response.json();
-      console.log("Response JSON:", result);
+    const payload = {
+      EncryptedData: encrypted
+    };
+    const response = await axios.post(apiUrl, payload, {
+  headers: {
+    "Content-Type": "application/json-patch+json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+      const encryptedResponse = await response.data; 
+      const result = decryptData(encryptedResponse);   
 
       if (result.HasErrors) {
         alert("Add correct address!");
@@ -186,8 +190,8 @@ const CheckoutGuest = () => {
         const totalValue = result.TotalAmount.Value;
         setTotalAmountesatamtied(totalValue);
         setShowModalModal(true);
-        console.log("Total Amount (Value):", totalValue);
-        console.log("Rate Details:", result);
+        // console.log("Total Amount (Value):", totalValue);
+        // console.log("Rate Details:", result);
         setRateDetails({
           totalAmount: result.TotalAmount,
           rateDetails: result.RateDetails,
@@ -214,7 +218,7 @@ const CheckoutGuest = () => {
       CreateGuestOrderInvoice(); 
 
     } else {
-      console.log("LOG");
+      // console.log("LOG");
 
     }
 
@@ -230,7 +234,7 @@ const CheckoutGuest = () => {
     // Retrieve cart data from localStorage
     const storedData = JSON.parse(localStorage.getItem("guestProduct")) || [];
     setCartData(storedData);
-    console.log(storedData);
+    // console.log(storedData);
 
     // Calculate grand total and shipping cost
     const subtotal = storedData.reduce(
@@ -263,7 +267,29 @@ const CheckoutGuest = () => {
     shippingpinCode: "",
   });
 
+const [sameAsBilling, setSameAsBilling] = useState(false);
 
+const handleSameAsBilling = () => {
+  const isChecked = !sameAsBilling;
+  setSameAsBilling(isChecked);
+
+  if (isChecked) {
+    handleInputChange({ target: { name: "shippingcountry", value: userDetails.country } });
+    handleInputChange({ target: { name: "shippingaddressLine1", value: userDetails.addressLine1 } });
+    handleInputChange({ target: { name: "shippingaddressLine2", value: userDetails.addressLine2 } });
+    handleInputChange({ target: { name: "shippingcity", value: userDetails.city } });
+    handleInputChange({ target: { name: "shippingstate", value: userDetails.state } });
+    handleInputChange({ target: { name: "shippingpinCode", value: userDetails.pinCode } });
+  } else {
+    // Clear shipping fields if unchecked (optional)
+    handleInputChange({ target: { name: "shippingcountry", value: "" } });
+    handleInputChange({ target: { name: "shippingaddressLine1", value: "" } });
+    handleInputChange({ target: { name: "shippingaddressLine2", value: "" } });
+    handleInputChange({ target: { name: "shippingcity", value: "" } });
+    handleInputChange({ target: { name: "shippingstate", value: "" } });
+    handleInputChange({ target: { name: "shippingpinCode", value: "" } });
+  }
+};
   const handleInputChange = (e) => {
     const { name, value } = e.target;
  
@@ -385,8 +411,8 @@ const CheckoutGuest = () => {
 
 
   function onChangerecaptcha(value) {
-    console.log("display");
-    console.log("Captcha value:", value);
+    // console.log("display");
+    // console.log("Captcha value:", value);
     fetchRateDetails();
     // authenticateAndProcessPayment();
   }
@@ -424,7 +450,7 @@ const CheckoutGuest = () => {
       const bearerToken = authResponse.data.access_token;
       localStorage.setItem("bearerToken", bearerToken);
 
-      console.log("Authentication successful. Bearer token:", bearerToken);
+      // console.log("Authentication successful. Bearer token:", bearerToken);
       return bearerToken;
     } catch (error) {
       console.error("Error authenticating:", error);
@@ -458,7 +484,7 @@ const CheckoutGuest = () => {
       localStorage.setItem("mco", mco);
 
       setMco(mco);
-      console.log("Payment initialized. MCO:", mco);
+      // console.log("Payment initialized. MCO:", mco);
       return mco;
     } catch (error) {
       console.error("Error initializing payment:", error);
@@ -511,7 +537,7 @@ const CheckoutGuest = () => {
     );
     const payload = { ...storedPayload, Orders: sortedOrders };
 
-    console.log("Payload sent to API:", payload);
+    // console.log("Payload sent to API:", payload);
 
     fetch(`${BASE_PATH}Order/CreateGuestOrderInvoice`, {
       method: 'POST',
@@ -524,7 +550,7 @@ const CheckoutGuest = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("API Response:", data);
+        // console.log("API Response:", data);
         localStorage.removeItem("orderPayload");
         markPaymentAsSuccessful();
 
@@ -566,7 +592,7 @@ const CheckoutGuest = () => {
           }
         );
 
-        console.log("Payment marked as successful:", updatePaymentResponse.status);
+        // console.log("Payment marked as successful:", updatePaymentResponse.status);
 
         // Remove mco and other items from localStorage after success
         localStorage.removeItem("mco");
@@ -592,6 +618,7 @@ const CheckoutGuest = () => {
     // const token = localStorage.getItem("token");
 
     const storedData = JSON.parse(localStorage.getItem("guestProduct")) || [];
+// console.log(storedData);
 
     const BillingAddress = {
       Line1: userDetails.addressLine1,
@@ -620,7 +647,7 @@ const CheckoutGuest = () => {
       ContactMobile: userDetails.phone,
       BillingAddress: BillingAddress,
       ShippingAddress: ShippingAddress,
-      TotalAmount: grandTotal + TotalAmountesatamtied,
+      TotalAmount: grandTotal + TotalAmountesatamtied.toFixed(2),
       isPaymentIncompleteOrCancelled: false,
       Orders: storedData.map((order) => ({
         ProductId: order.ProductId,
@@ -639,14 +666,14 @@ const CheckoutGuest = () => {
     };
 
 
-    console.log('payload new', payload);
+    // console.log('payload new', payload);
 
 
 
     localStorage.setItem("orderPayload", JSON.stringify(payload));
 
 
-    console.log("Initiating Mastercard payment...");
+    // console.log("Initiating Mastercard payment...");
     const tokenlogin = localStorage.getItem("loginToken");
 
 
@@ -699,7 +726,7 @@ const CheckoutGuest = () => {
         },
         order: {
           currency: "AED",
-          amount: grandTotal + TotalAmountesatamtied,
+          amount: (grandTotal + TotalAmountesatamtied).toFixed(2),
           id: mco,
           description: "ERC CRAFTS",
         },
@@ -722,12 +749,19 @@ const CheckoutGuest = () => {
       },
     };
 
-    console.log("Mastercard API request data:", data);
+    // console.log("Mastercard API request data:", data);
+  const encrypted = encryptData(data);
 
+    const payload1 = {
+      EncryptedData: encrypted
+    };
+
+
+    
     try {
       const response = await axios.post(
         `${BASE_PATH}Security/GetSessionIdFromMasterCard`,
-        data,
+        payload1,
         {
           headers: {
             // Authorization: `Bearer ${token}`,
@@ -736,7 +770,11 @@ const CheckoutGuest = () => {
         }
       );
 
-      const sessionId = response.data.SessionId;
+      const encryptedResponse = response.data;
+      const decrypted = decryptData(encryptedResponse); 
+
+      const sessionId = decrypted?.SessionId;
+
       if (sessionId) {
         if (
           window.isMastercardScriptLoaded &&
@@ -770,7 +808,7 @@ const CheckoutGuest = () => {
 
 
 
-  console.log(mco);
+  // console.log(mco);
   // const [shouldShowCancelPayment, setShouldShowCancelPayment] = useState(false);
   // useEffect(() => {
   //   const paymentStatus = localStorage.getItem("paymentStatus");
@@ -902,7 +940,7 @@ const CheckoutGuest = () => {
                     </td>
                     <td className="text-right">
                       <h5>
-                        <strong>AED {grandTotal}</strong>
+                       <strong>AED {grandTotal?.toFixed(2)}</strong>
                       </h5>
                     </td>
                   </tr>
@@ -916,7 +954,7 @@ const CheckoutGuest = () => {
                     </td>
                     <td className="text-right">
                       <h5>
-                        <strong>AED {TotalAmountesatamtied}</strong>
+                        <strong>AED {TotalAmountesatamtied?.toFixed(2)}</strong>
                       </h5>
                     </td>
                   </tr>
@@ -930,7 +968,7 @@ const CheckoutGuest = () => {
                     </td>
                     <td className="text-right">
                       <h3>
-                        <strong>AED {grandTotal + TotalAmountesatamtied}</strong>
+                        <strong>AED {(grandTotal + TotalAmountesatamtied).toFixed(2)}</strong>
                       </h3>
                     </td>
                   </tr>
@@ -1154,12 +1192,33 @@ const CheckoutGuest = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="checckoutTitle f-s-20 f-w-SB txt-black mrg-b-10">
+                    
+              
+<div className="checckoutTitle f-s-20 f-w-SB txt-black mrg-b-10 d-flex justify-between align-center gap-3">
+  <div className="shipping-label">
+    {language === "en" ? "Shipping address" : "عنوان الشحن"}
+  </div>
+
+  <div className="checkboxes__item">
+    <label className="checkbox style-d">
+      <input
+        type="checkbox"
+        id="sameAsBilling"
+        checked={sameAsBilling}
+        onChange={handleSameAsBilling}
+      />
+      <div className="checkbox__checkmark"></div>
+      <div className="checkbox__body">
+        {language === "en" ? "Same as billing address" : "نفس عنوان الفواتير"}
+      </div>
+    </label>
+  </div>
+</div>
 
 
-                      {language === "en" ? "Shipping address" : "عنوان الشحن"}
 
-                    </div>
+                    
+                       
                     <div className="row row-vw">
                       <div className="col-md-12">
                         <div className="formGroup mrg-b-30">
@@ -1333,7 +1392,7 @@ const CheckoutGuest = () => {
                         <div className="form-group compact-form-group">
                           {showReCAPTCHA ? (
                             <ReCAPTCHA
-                              sitekey="6Lfd6D0rAAAAAB2sJs7KnDr1pYnIcU9YAYeqtvCG"
+                                sitekey={ERC_ReCAPTCHA}
                               onChange={onChangerecaptcha}
                             />
                           ) : (
@@ -1475,7 +1534,7 @@ export default CheckoutGuest;
               </div>
 
               <div className="col-md-12">
-                <div class="shiping-adBox mrg-b-20">
+                <div className="shiping-adBox mrg-b-20">
                   <div className="mrg-b-20">
                     <div className="d-flex align-items-center justify-content-between">
                       <div className="billtingTitle f-W-B">
@@ -1492,7 +1551,7 @@ export default CheckoutGuest;
                     shippingAddresses.map((address) => (
                       <div className="" key={address.AddressId}>
                         <div className=" d-flex gap-2">
-                          <div class="redio-item">
+                          <div className="redio-item">
                             <input
                               type="radio"
                               name="defaultAddress"
@@ -1504,7 +1563,7 @@ export default CheckoutGuest;
                               }
                             />
 
-                            <label class="checkLable" for="checkBox">
+                            <label className="checkLable" for="checkBox">
                               <div>
                                 {address.AddressLine1},{address.AddressLine2},
                                 <br />
@@ -1536,7 +1595,7 @@ export default CheckoutGuest;
               </div>
 
               <div className="col-md-12">
-                <div class="shiping-adBox mrg-b-20">
+                <div className="shiping-adBox mrg-b-20">
                   <div className="mrg-b-20">
                     <div className="d-flex align-items-center justify-content-between">
                       <div className="billtingTitle f-W-B">
@@ -1553,7 +1612,7 @@ export default CheckoutGuest;
                     billingAddresses.map((address) => (
                       <div className="" key={address.AddressId}>
                         <div className=" d-flex gap-2">
-                          <div class="redio-item">
+                          <div className="redio-item">
                             <input
                               type="radio"
                               name="defaultBillingAddressytfuydfy"
@@ -1567,7 +1626,7 @@ export default CheckoutGuest;
                               }
                             />
 
-                            <label class="checkLable" for="checkBox">
+                            <label className="checkLable" for="checkBox">
                               <div>
                                 {address.AddressLine1},{address.AddressLine2},
                                 <br />
@@ -1647,7 +1706,7 @@ export default CheckoutGuest;
                   <div className="form-group compact-form-group">
                     {showReCAPTCHA ? (
                       <ReCAPTCHA
-                        sitekey="6Lfd6D0rAAAAAB2sJs7KnDr1pYnIcU9YAYeqtvCG"
+                        sitekey="6LdO8ysqAAAAANkFNqeLXOhIzTMO-tXqzDTQkbAa"
                         onChange={onChangerecaptcha}
 
                       />

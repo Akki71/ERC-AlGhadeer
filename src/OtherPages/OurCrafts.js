@@ -62,10 +62,10 @@ const OurCrafts = () => {
         );
         // console.log(OurCrafts);
         return OurCrafts.map((OurCraft, index) => (
-            <li className="list-block-item">
+            <li className="list-block-item" key={OurCraft?.Id || index}>
 
                 <div className="row justify-content-center align-items-center">
-                    <div className="col-lg-5" key={index}>
+                    <div className="col-lg-5" >
                         <div className="craftImg mrg-b-10">   <img src={OurCraft.ImagePath} className="w-100" /> </div>
                     </div>
                     <div className="col-lg-5">

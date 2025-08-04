@@ -84,7 +84,7 @@ function CartPage() {
           // }, 100);
         } else if (!response.ok) {
           // Handle other error cases
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          // throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
@@ -964,7 +964,7 @@ function CartPage() {
                                 </td>
                               </tr>
                             ) : (
-                              <h4></h4>
+                              <></>
                             )}
                           </tbody>
                         </table>
