@@ -146,15 +146,15 @@ const CheckoutGuest = () => {
       },
       PreferredCurrencyCode: "AED",
       ClientInfo: {
-         UserName: "marhaba@alghadeeruaecrafts.ae",
-         Password: "Ff$123456",
-         Version: "v1.0",
-         AccountNumber: "130354",
-         AccountPin: "554654",
-         AccountEntity: "AUH",
-         AccountCountryCode: "AE",
-         Source: 24,
-         PreferredLanguageCode: null,
+        UserName: "marhaba@alghadeeruaecrafts.ae",
+        Password: "Ff$123456",
+        Version: "v1.0",
+        AccountNumber: "130354",
+        AccountPin: "554654",
+        AccountEntity: "AUH",
+        AccountCountryCode: "AE",
+        Source: 24,
+        PreferredLanguageCode: null,
       },
       Transaction: null,
     };
@@ -163,23 +163,23 @@ const CheckoutGuest = () => {
     // setTotalAmountesatamtied(totalValue);
     // setShowModalModal(true);
     try {
-          //  const { encryptedData } = hybridEncryptForBackend(requestData);
+      //  const { encryptedData } = hybridEncryptForBackend(requestData);
 
-  const encrypted = encryptData(requestData);
+      const encrypted = encryptData(requestData);
 
-    const payload = {
-      EncryptedData: encrypted
-    };
-    const response = await axios.post(apiUrl, payload, {
-  headers: {
-    "Content-Type": "application/json-patch+json",
-    Accept: "application/json",
-    Authorization: `Bearer ${token}`,
-  },
-});
+      const payload = {
+        EncryptedData: encrypted
+      };
+      const response = await axios.post(apiUrl, payload, {
+        headers: {
+          "Content-Type": "application/json-patch+json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      const encryptedResponse = await response.data; 
-      const result = decryptData(encryptedResponse);   
+      const encryptedResponse = await response.data;
+      const result = decryptData(encryptedResponse);
 
       if (result.HasErrors) {
         alert("Add correct address!");
@@ -215,7 +215,7 @@ const CheckoutGuest = () => {
       setLoading(true);
 
 
-      CreateGuestOrderInvoice(); 
+      CreateGuestOrderInvoice();
 
     } else {
       // console.log("LOG");
@@ -267,64 +267,64 @@ const CheckoutGuest = () => {
     shippingpinCode: "",
   });
 
-const [sameAsBilling, setSameAsBilling] = useState(false);
+  const [sameAsBilling, setSameAsBilling] = useState(false);
 
-const handleSameAsBilling = () => {
-  const isChecked = !sameAsBilling;
-  setSameAsBilling(isChecked);
+  const handleSameAsBilling = () => {
+    const isChecked = !sameAsBilling;
+    setSameAsBilling(isChecked);
 
-  if (isChecked) {
-    handleInputChange({ target: { name: "shippingcountry", value: userDetails.country } });
-    handleInputChange({ target: { name: "shippingaddressLine1", value: userDetails.addressLine1 } });
-    handleInputChange({ target: { name: "shippingaddressLine2", value: userDetails.addressLine2 } });
-    handleInputChange({ target: { name: "shippingcity", value: userDetails.city } });
-    handleInputChange({ target: { name: "shippingstate", value: userDetails.state } });
-    handleInputChange({ target: { name: "shippingpinCode", value: userDetails.pinCode } });
-  } else {
-    // Clear shipping fields if unchecked (optional)
-    handleInputChange({ target: { name: "shippingcountry", value: "" } });
-    handleInputChange({ target: { name: "shippingaddressLine1", value: "" } });
-    handleInputChange({ target: { name: "shippingaddressLine2", value: "" } });
-    handleInputChange({ target: { name: "shippingcity", value: "" } });
-    handleInputChange({ target: { name: "shippingstate", value: "" } });
-    handleInputChange({ target: { name: "shippingpinCode", value: "" } });
-  }
-};
+    if (isChecked) {
+      handleInputChange({ target: { name: "shippingcountry", value: userDetails.country } });
+      handleInputChange({ target: { name: "shippingaddressLine1", value: userDetails.addressLine1 } });
+      handleInputChange({ target: { name: "shippingaddressLine2", value: userDetails.addressLine2 } });
+      handleInputChange({ target: { name: "shippingcity", value: userDetails.city } });
+      handleInputChange({ target: { name: "shippingstate", value: userDetails.state } });
+      handleInputChange({ target: { name: "shippingpinCode", value: userDetails.pinCode } });
+    } else {
+      // Clear shipping fields if unchecked (optional)
+      handleInputChange({ target: { name: "shippingcountry", value: "" } });
+      handleInputChange({ target: { name: "shippingaddressLine1", value: "" } });
+      handleInputChange({ target: { name: "shippingaddressLine2", value: "" } });
+      handleInputChange({ target: { name: "shippingcity", value: "" } });
+      handleInputChange({ target: { name: "shippingstate", value: "" } });
+      handleInputChange({ target: { name: "shippingpinCode", value: "" } });
+    }
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
- 
+
     setUserDetails((prevState) => ({
       ...prevState,
       [name]: value,
     }));
- 
+
     setErrorMessages((prevErrors) => {
       const newErrors = { ...prevErrors };
- 
+
       if (name === "email") {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         newErrors.email = !value
           ? (language === "en" ? "Email is required" : "عنوان البريد الإلكتروني مطلوب")
           : !emailRegex.test(value)
-          ? (language === "en" ? "Invalid email format" : "تنسيق البريد الإلكتروني غير صالح")
-          : "";
+            ? (language === "en" ? "Invalid email format" : "تنسيق البريد الإلكتروني غير صالح")
+            : "";
       }
- 
+
       if (name === "phone") {
         const phoneRegex = /^[0-9]{10}$/;
         newErrors.phone = !value
           ? (language === "en" ? "Phone number is required" : "رقم الهاتف مطلوب")
           : !phoneRegex.test(value)
-          ? (language === "en" ? "Invalid phone number" : "رقم الهاتف غير صالح")
-          : "";
+            ? (language === "en" ? "Invalid phone number" : "رقم الهاتف غير صالح")
+            : "";
       }
- 
+
       if (name !== "email" && name !== "phone") {
         newErrors[name] = value
           ? ""
           : (language === "en" ? `${name} is required` : `${name} مطلوب`);
       }
- 
+
       return newErrors;
     });
   };
@@ -348,7 +348,7 @@ const handleSameAsBilling = () => {
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(userDetails.email)) {
-        newErrors.email = language === "en" ? "Invalid email format" : "Invalid email format (translated)";
+        newErrors.email = language === "en" ? "Invalid email format" : "Invalid email format";
       }
     }
 
@@ -359,35 +359,41 @@ const handleSameAsBilling = () => {
 
     // Validate address fields
     if (!userDetails.addressLine1) {
-      newErrors.addressLine1 = language === "en" ? "Address line 1 is required" : "Billing address line 1 is required (translated)";
+      newErrors.addressLine1 = language === "en" ? "Address line 1 is required" : "Billing address line 1 is required";
+    }
+    if (!userDetails.addressLine2) {
+      newErrors.addressLine2 = language === "en" ? "Address line 2 is required" : "Billing address line 2 is required";
     }
     if (!userDetails.city) {
-      newErrors.city = language === "en" ? "City is required" : "City is required (translated)";
+      newErrors.city = language === "en" ? "City is required" : "City is required";
     }
     if (!userDetails.state) {
-      newErrors.state = language === "en" ? "State is required" : "State is required (translated)";
+      newErrors.state = language === "en" ? "State is required" : "State is required";
     }
     if (!userDetails.pinCode) {
-      newErrors.pinCode = language === "en" ? "Pin code is required" : "Pin code is required (translated)";
+      newErrors.pinCode = language === "en" ? "Pin code is required" : "Pin code is required";
     }
     if (!userDetails.country) {
-      newErrors.country = language === "en" ? "Country is required" : "Country is required (translated)";
+      newErrors.country = language === "en" ? "Country is required" : "Country is required";
     }
     if (!userDetails.shippingcountry) {
-      newErrors.shippingcountry = language === "en" ? "Country is required" : "Country is required (translated)";
+      newErrors.shippingcountry = language === "en" ? "Country is required" : "Country is required";
     }
     // Validate shipping fields
     if (!userDetails.shippingaddressLine1) {
-      newErrors.shippingaddressLine1 = language === "en" ? "Address line 1 is required" : "Shipping address line 1 is required (translated)";
+      newErrors.shippingaddressLine1 = language === "en" ? "Address line 1 is required" : "Shipping address line 1 is required";
+    }
+    if (!userDetails.shippingaddressLine2) {
+      newErrors.shippingaddressLine2 = language === "en" ? "Address line 2 is required" : "Shipping address line 2 is required";
     }
     if (!userDetails.shippingcity) {
-      newErrors.shippingcity = language === "en" ? "City is required" : "Shipping city is required (translated)";
+      newErrors.shippingcity = language === "en" ? "City is required" : "Shipping city is required";
     }
     if (!userDetails.shippingstate) {
-      newErrors.shippingstate = language === "en" ? "State is required" : "Shipping state is required (translated)";
+      newErrors.shippingstate = language === "en" ? "State is required" : "Shipping state is required";
     }
     if (!userDetails.shippingpinCode) {
-      newErrors.shippingpinCode = language === "en" ? "Pin code is required" : "Shipping pin code is required (translated)";
+      newErrors.shippingpinCode = language === "en" ? "Pin code is required" : "Shipping pin code is required";
     }
 
     return newErrors;
@@ -462,12 +468,13 @@ const handleSameAsBilling = () => {
 
     const paymentData = [
       {
-        amount: 100,
+        amount: (grandTotal + TotalAmountesatamtied).toFixed(2),
         name: `${userDetails.firstName} ${userDetails.lastName}`,
         mobile: userDetails.phone,
         email: userDetails.email,
       },
     ];
+    console.log(paymentData);
 
     try {
       const initPaymentResponse = await axios.post(
@@ -563,7 +570,7 @@ const handleSameAsBilling = () => {
 
   };
   const markPaymentAsSuccessful = async () => {
-    const mco = await localStorage.getItem("mco"); 
+    const mco = await localStorage.getItem("mco");
 
     if (!mco) {
       console.error("MCO value is null or undefined.");
@@ -618,7 +625,7 @@ const handleSameAsBilling = () => {
     // const token = localStorage.getItem("token");
 
     const storedData = JSON.parse(localStorage.getItem("guestProduct")) || [];
-// console.log(storedData);
+    // console.log(storedData);
 
     const BillingAddress = {
       Line1: userDetails.addressLine1,
@@ -647,7 +654,7 @@ const handleSameAsBilling = () => {
       ContactMobile: userDetails.phone,
       BillingAddress: BillingAddress,
       ShippingAddress: ShippingAddress,
-      TotalAmount: grandTotal + TotalAmountesatamtied.toFixed(2),
+      TotalAmount: (grandTotal + TotalAmountesatamtied).toFixed(2),
       isPaymentIncompleteOrCancelled: false,
       Orders: storedData.map((order) => ({
         ProductId: order.ProductId,
@@ -750,14 +757,14 @@ const handleSameAsBilling = () => {
     };
 
     // console.log("Mastercard API request data:", data);
-  const encrypted = encryptData(data);
+    const encrypted = encryptData(data);
 
     const payload1 = {
       EncryptedData: encrypted
     };
 
 
-    
+
     try {
       const response = await axios.post(
         `${BASE_PATH}Security/GetSessionIdFromMasterCard`,
@@ -771,7 +778,7 @@ const handleSameAsBilling = () => {
       );
 
       const encryptedResponse = response.data;
-      const decrypted = decryptData(encryptedResponse); 
+      const decrypted = decryptData(encryptedResponse);
 
       const sessionId = decrypted?.SessionId;
 
@@ -940,7 +947,7 @@ const handleSameAsBilling = () => {
                     </td>
                     <td className="text-right">
                       <h5>
-                       <strong>AED {grandTotal?.toFixed(2)}</strong>
+                        <strong>AED {grandTotal?.toFixed(2)}</strong>
                       </h5>
                     </td>
                   </tr>
@@ -1108,7 +1115,7 @@ const handleSameAsBilling = () => {
                             <option value="">  {language === "en"
                               ? "Select Country"
                               : "اختر الدولة"}</option>
-                         
+
                             <option value="ARE">ARE</option>
 
                             {/* <option value="UAE">UAE</option> */}
@@ -1145,7 +1152,7 @@ const handleSameAsBilling = () => {
                             value={userDetails.addressLine2}
                             onChange={handleInputChange}
                           />
-
+                          {errorMessages.addressLine2 && <p style={{ color: "red" }}>{errorMessages.addressLine2}</p>}
                         </div>
                       </div>
                       <div className="col-md-4">
@@ -1192,33 +1199,33 @@ const handleSameAsBilling = () => {
                         </div>
                       </div>
                     </div>
-                    
-              
-<div className="checckoutTitle f-s-20 f-w-SB txt-black mrg-b-10 d-flex justify-between align-center gap-3">
-  <div className="shipping-label">
-    {language === "en" ? "Shipping address" : "عنوان الشحن"}
-  </div>
-
-  <div className="checkboxes__item">
-    <label className="checkbox style-d">
-      <input
-        type="checkbox"
-        id="sameAsBilling"
-        checked={sameAsBilling}
-        onChange={handleSameAsBilling}
-      />
-      <div className="checkbox__checkmark"></div>
-      <div className="checkbox__body">
-        {language === "en" ? "Same as billing address" : "نفس عنوان الفواتير"}
-      </div>
-    </label>
-  </div>
-</div>
 
 
+                    <div className="checckoutTitle f-s-20 f-w-SB txt-black mrg-b-10 d-flex justify-between align-center gap-3">
+                      <div className="shipping-label">
+                        {language === "en" ? "Shipping address" : "عنوان الشحن"}
+                      </div>
 
-                    
-                       
+                      <div className="checkboxes__item">
+                        <label className="checkbox style-d">
+                          <input
+                            type="checkbox"
+                            id="sameAsBilling"
+                            checked={sameAsBilling}
+                            onChange={handleSameAsBilling}
+                          />
+                          <div className="checkbox__checkmark"></div>
+                          <div className="checkbox__body">
+                            {language === "en" ? "Same as billing address" : "نفس عنوان الفواتير"}
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+
+
+
+
                     <div className="row row-vw">
                       <div className="col-md-12">
                         <div className="formGroup mrg-b-30">
@@ -1234,8 +1241,8 @@ const handleSameAsBilling = () => {
                             <option value="">  {language === "en"
                               ? "Select Country"
                               : "اختر الدولة"}</option>
-                           
-                           
+
+
                             <option value="ARE">ARE</option>
 
                             {/* <option value="UAE">UAE</option> */}
@@ -1275,6 +1282,7 @@ const handleSameAsBilling = () => {
                           />
 
 
+                          {errorMessages.shippingaddressLine2 && <p style={{ color: "red" }}>{errorMessages.shippingaddressLine2}</p>}
                         </div>
                       </div>
                       <div className="col-md-4">
@@ -1392,7 +1400,7 @@ const handleSameAsBilling = () => {
                         <div className="form-group compact-form-group">
                           {showReCAPTCHA ? (
                             <ReCAPTCHA
-                                sitekey={ERC_ReCAPTCHA}
+                              sitekey={ERC_ReCAPTCHA}
                               onChange={onChangerecaptcha}
                             />
                           ) : (

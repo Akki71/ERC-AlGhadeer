@@ -41,14 +41,15 @@ const Checkout = () => {
 
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({});
-  const UserID = localStorage.getItem("UserID");
+  
   const tokenlogin = localStorage.getItem("loginToken");
   const bearerToken = localStorage.getItem("bearerToken");
-
+ const UserID = localStorage.getItem("UserID");
   useEffect(() => {
     window.scrollTo(0, 300);
   }, []);
   useEffect(() => {
+    const UserID = localStorage.getItem("UserID");
     if (!UserID) {
       navigate("/login");
       return;
@@ -535,7 +536,7 @@ const Checkout = () => {
         setError(error);
         // localStorage.removeItem("loginToken");
         // localStorage.removeItem("UserID");
-        navigate("/login");
+        // navigate("/login");
       });
   };
 
