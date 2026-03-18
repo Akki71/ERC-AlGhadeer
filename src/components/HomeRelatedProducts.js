@@ -36,6 +36,9 @@ function HomeRelatedProducts() {
   const { language } = useLanguage();
 
   const fetchWishlistData = async () => {
+      if (!UserID) {
+      return
+    }
     const apiUrl = `${BASE_PATH}Wishlist/GetWishlistByUserId/${UserID}`;
 
     try {
@@ -228,6 +231,9 @@ function HomeRelatedProducts() {
   const [CartProduct, setCartProduct] = useState([]);
   const [activeCartProducts, setActiveCartProducts] = useState([]);
   const fetchUserOrdersAndCheckQuantity = async () => {
+          if (!UserID) {
+      return
+    }
     const apiUrl = `${BASE_PATH}Order/GetAllUserOrdersInCartByUserId?userId=${UserID}`;
 
     try {

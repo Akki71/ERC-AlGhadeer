@@ -4,7 +4,7 @@ import BASE_PATH from '../serviceurls';
 import { useLanguage } from '../redux/LanguageContext';
 import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
-
+import DOMPurify from "dompurify";
 const NewsDetails = () => {
   const { id } = useParams(); // Extract ID from URL
   const { language } = useLanguage();
@@ -80,8 +80,8 @@ const NewsDetails = () => {
               </div>
               <div className="txtSummary">
                 <div dangerouslySetInnerHTML={{
-                  __html: filteredNews.Description
-                }} />
+                  __html: DOMPurify.sanitize( filteredNews.Description
+                ), }} />
               </div>
             </div>
           </div>

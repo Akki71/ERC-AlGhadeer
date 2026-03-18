@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import BASE_PATH from '../serviceurls';
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
-
+import DOMPurify from "dompurify";
 const Blog = () => {
   const [responseData, setResponseData] = useState(null);
   const [loading , setLoading] = useState(true)
@@ -73,17 +73,17 @@ const Blog = () => {
                           <div className="blogTitle">
                             <div className="blogTitle_wrap mrg-b-10">
                               <a className="blogTitle-link f-w-B font-Lyon" dangerouslySetInnerHTML={{
-                                __html: language === "en"
+                                __html: DOMPurify.sanitize( language === "en"
                                   ? section.LabelModels.find(label => label.LabelName === "Title").EnglishDescription
                                   : section.LabelModels.find(label => label.LabelName === "Title").ArabicDescription
-                              }} />
+                              ), }} />
                             </div>
                             <div className="blogTitle_wrap mrg-b-10">
                               <a className="blogTitle-link f-w-B font-Lyon" dangerouslySetInnerHTML={{
-                                __html: language === "en"
+                                __html:  DOMPurify.sanitize(language === "en"
                                   ? section.LabelModels.find(label => label.LabelName === "Author").EnglishDescription
                                   : section.LabelModels.find(label => label.LabelName === "Author").ArabicDescription
-                              }} />
+                             ),  }} />
                             </div>
                             {/* <div className="blogTxt_summary f-s-14 mrg-b-20" dangerouslySetInnerHTML={{
                               __html: language === "en"
@@ -139,10 +139,10 @@ const Blog = () => {
                             <div className="col-6">
                               <div className="recentBlog_title">
                                 <a className="primary-clr line_H_1_2 d-block" dangerouslySetInnerHTML={{
-                                  __html: language === "en"
+                                  __html:  DOMPurify.sanitize(language === "en"
                                     ? section.LabelModels.find(label => label.LabelName === "Title").EnglishDescription
                                     : section.LabelModels.find(label => label.LabelName === "Title").ArabicDescription
-                                }} />
+                                ), }} />
                               </div>
                             </div>
                           </li>

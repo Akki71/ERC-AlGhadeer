@@ -169,7 +169,7 @@ const PaymentCallback = () => {
       })
       .catch((error) => {
         setError(error);
-        navigate("/login")
+        // navigate("/login")
       });
   };
 

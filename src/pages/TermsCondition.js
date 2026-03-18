@@ -1,21 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 // import AuthService from './AuthService';
 import handleClick from '../components/links';
 import { useLanguage } from '../redux/LanguageContext';
 const TermsCondition = () => {
 const { language} = useLanguage();  useEffect(() => { handleClick() }, [handleClick])
   useEffect(() => { window.scrollTo(0, 0); }, []);
-  // const handleLogout = async () => {
-  //   try {
-  //     await AuthService.logout();
-
-  //     console.log('Logout successful');
-  //     window.location.href = '/login';
-  //   } catch (error) {
-  //     console.error('Logout failed:', error);
-
-  //   }
-  // };
 
   return (
 

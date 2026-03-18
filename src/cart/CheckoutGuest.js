@@ -656,6 +656,7 @@ const CheckoutGuest = () => {
       ShippingAddress: ShippingAddress,
       TotalAmount: (grandTotal + TotalAmountesatamtied).toFixed(2),
       isPaymentIncompleteOrCancelled: false,
+      TotalAmountesatamtied:(TotalAmountesatamtied).toFixed(2),
       Orders: storedData.map((order) => ({
         ProductId: order.ProductId,
         CategoryId: order.CategoryId,
@@ -663,7 +664,7 @@ const CheckoutGuest = () => {
         ProductSizeId: order.ProductSizeId,
         OrderPrice: order.OrderPrice,
         OrderQuantity: order.OrderQuantity,
-        TotalAmount: order.TotalAmount,
+        TotalAmount: parseFloat( order.OrderQuantity) * parseFloat( order.OrderPrice),
         ProductColorOrdered: order.ProductColorOrdered
           ? typeof order.ProductColorOrdered === "string"
             ? order.ProductColorOrdered

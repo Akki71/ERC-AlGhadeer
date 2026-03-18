@@ -9,7 +9,7 @@ import BASE_PATH from '../serviceurls';
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
 import Location from '../components/Location';
-
+import DOMPurify from "dompurify";
 const HowWework = () => {
   const [responseData, setResponseData] = useState(null);
   useEffect(() => { handleClick() }, [handleClick])
@@ -73,10 +73,10 @@ const { language} = useLanguage();  useEffect(() => {
                   <div className="secTitle_wrap text-center mrg-b-30" data-aos="fade-up" data-aos-delay={300}>
                     <div className="sec_subTitle f-s-20"
                       dangerouslySetInnerHTML={{
-                        __html: language === "en"
+                        __html: DOMPurify.sanitize( language === "en"
                           ? responseData[0].SectionModels[1].LabelModels[0].EnglishDescription
                           : responseData[0].SectionModels[1].LabelModels[0].ArabicDescription
-                      }}
+                       ),}}
                     />
                     <div className="secTitle f-s-30 font-Lyon "> 
                     
@@ -92,18 +92,18 @@ const { language} = useLanguage();  useEffect(() => {
 
                     <div className="inspirationCont line_H_1_2 mrg-b-30"
                       dangerouslySetInnerHTML={{
-                        __html: language === "en"
+                        __html:  DOMPurify.sanitize(language === "en"
                           ? responseData[0].SectionModels[1].LabelModels[0].EnglishDescription
                           : responseData[0].SectionModels[1].LabelModels[0].ArabicDescription
-                      }}
+                      ), }}
                     />
 
                     <div className="inspirationCont line_H_1_2 mrg-b-30"
                       dangerouslySetInnerHTML={{
-                        __html: language === "en"
+                        __html:  DOMPurify.sanitize(language === "en"
                           ? responseData[0].SectionModels[1].LabelModels[1].EnglishDescription
                           : responseData[0].SectionModels[1].LabelModels[1].ArabicDescription
-                      }}
+                     ),  }}
 
 
                     /></div>
@@ -135,10 +135,10 @@ const { language} = useLanguage();  useEffect(() => {
 
                     <div className="inspirationCont line_H_1_2 mrg-b-30"
                       dangerouslySetInnerHTML={{
-                        __html: language === "en"
+                        __html: DOMPurify.sanitize( language === "en"
                           ? responseData[0].SectionModels[1].LabelModels[4].EnglishDescription
                           : responseData[0].SectionModels[1].LabelModels[4].ArabicDescription
-                      }}
+                      ), }}
                     />
                   </div>
                 </div>

@@ -11,7 +11,7 @@ import crafts7 from "../assets/images/7crafts.jpg";
 import dashboard from "../assets/images/dashboard-bg.jpg";
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
-
+import DOMPurify from "dompurify";
 const OurCrafts = () => {
     const [loading, setLoading] = useState(true)
 
@@ -79,17 +79,17 @@ const OurCrafts = () => {
 
                             <div className="craftSummary text-justify"
     dangerouslySetInnerHTML={{
-        __html: language === 'en' 
+        __html: DOMPurify.sanitize( language === 'en' 
             ? OurCraft.ShortDescription 
             : OurCraft.ShortDescription 
-    }} 
+ ),    }} 
 ></div>
 <div className="craftSummary text-justify"
     dangerouslySetInnerHTML={{
-        __html: language === 'en' 
+        __html: DOMPurify.sanitize( language === 'en' 
             ? OurCraft.LongDescription 
             : OurCraft.LongDescription 
-    }} 
+    ), }} 
 ></div>
 
                         </div>

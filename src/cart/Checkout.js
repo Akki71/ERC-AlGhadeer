@@ -468,7 +468,7 @@ const Checkout = () => {
         const total = data.reduce((acc, order) => acc + order.TotalAmount, 0);
         setTotalAmount(total);
         // console.log(total);
-        setLoader(false);
+        // setLoader(false);
         const idsCSV = data.map((order) => order.OrderId).join(",");
         setOrderIdsCSV(idsCSV);
         const totalWeight = data.reduce(
@@ -547,7 +547,7 @@ const Checkout = () => {
 
         await fetchUserOrders();
 
-        setLoader(false);
+        // setLoader(false);
       } catch (error) {
         console.error("Error in fetching data:", error);
       }
@@ -862,7 +862,7 @@ const Checkout = () => {
       } else {
         const totalValue = result.TotalAmount.Value;
         setTotalAmountesatamtied(totalValue);
-     
+        setLoader(false);
         setRateDetails({
           totalAmount: result.TotalAmount,
           rateDetails: result.RateDetails,

@@ -3,6 +3,7 @@ import dashboard_bg from "../assets/images/dashboard-bg.jpg";
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import BASE_PATH from "../serviceurls";
+import DOMPurify from "dompurify";
 import { useLanguage } from "../redux/LanguageContext";
 import {
   PencilFill,
@@ -233,8 +234,8 @@ const EventsServices = () => {
                           </Link>
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: responseData[0].SectionModels[0].LabelModels[1].EnglishDescription
-                            }}
+                              __html: DOMPurify.sanitize( responseData[0].SectionModels[0].LabelModels[1].EnglishDescription
+                           ),  }}
                           />
                         </>
                       ) : (
@@ -250,8 +251,8 @@ const EventsServices = () => {
                           </Link>
                           <span
                             dangerouslySetInnerHTML={{
-                              __html: responseData[0].SectionModels[0].LabelModels[1].ArabicDescription
-                            }}
+                              __html:  DOMPurify.sanitize(responseData[0].SectionModels[0].LabelModels[1].ArabicDescription
+                            ), }}
                           />
 
                         </>

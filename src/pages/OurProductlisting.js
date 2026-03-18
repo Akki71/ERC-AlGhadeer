@@ -195,6 +195,9 @@ const OurproductScreen = (category) => {
   };
 
   const fetchUserOrdersAndCheckQuantity = async () => {
+      if (!UserID) {
+      return
+    }
     const apiUrl = `${BASE_PATH}Order/GetAllUserOrdersInCartByUserId?userId=${UserID}`;
     try {
       const response = await fetch(apiUrl, {
@@ -274,7 +277,9 @@ const OurproductScreen = (category) => {
   };
 
   const fetchWishlistData = async () => {
-
+  if (!UserID) {
+      return
+    }
     const apiUrl = `${BASE_PATH}Wishlist/GetWishlistByUserId/${UserID}`;
     try {
       const response = await fetch(apiUrl, {

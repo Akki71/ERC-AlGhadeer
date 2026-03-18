@@ -13,6 +13,7 @@ import BASE_PATH from "../serviceurls.js";
 import Loader from "../components/Loader.js";
 import { useLanguage } from "../redux/LanguageContext";
 import Location from "../components/Location.js";
+import DOMPurify from "dompurify";
 const Homepage = () => {
   useEffect(() => {
     handleClick();
@@ -41,12 +42,12 @@ const Homepage = () => {
       };
 
       const response = await fetch(`${BASE_PATH}Security/GetToken`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(postData),
-        }
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      }
       );
 
       if (!response.ok) {
@@ -151,12 +152,11 @@ const Homepage = () => {
                               data-aos-duration={700}
                               data-aos-delay={600}
                               dangerouslySetInnerHTML={{
-                                __html:
+                                __html: DOMPurify.sanitize(
                                   language === "en"
-                                    ? responseData[0].SectionModels[0]
-                                        .LabelModels[0].EnglishDescription
-                                    : responseData[0].SectionModels[0]
-                                        .LabelModels[0].ArabicDescription,
+                                    ? responseData[0].SectionModels[0].LabelModels[0].EnglishDescription
+                                    : responseData[0].SectionModels[0].LabelModels[0].ArabicDescription
+                                ),
                               }}
                             />
                             <div
@@ -287,12 +287,11 @@ const Homepage = () => {
                                 <div
                                   className="collection_subTitile font-Lyon clr-pink-light line_H_1_2 mrg-b-20"
                                   dangerouslySetInnerHTML={{
-                                    __html:
+                                    __html: DOMPurify.sanitize(
                                       language === "en"
-                                        ? responseData[0].SectionModels[1]
-                                            .LabelModels[1].EnglishDescription
-                                        : responseData[0].SectionModels[1]
-                                            .LabelModels[1].ArabicDescription,
+                                        ? responseData[0].SectionModels[1].LabelModels[1].EnglishDescription
+                                        : responseData[0].SectionModels[1].LabelModels[1].ArabicDescription
+                                    ),
                                   }}
                                 />
                               </div>
@@ -336,12 +335,13 @@ const Homepage = () => {
                         <div
                           className="collectionContTxt mrg-b-30 clr-pink-light"
                           dangerouslySetInnerHTML={{
-                            __html:
+                            __html: DOMPurify.sanitize(
                               language === "en"
                                 ? responseData[0].SectionModels[1]
-                                    .LabelModels[4].EnglishDescription
+                                  .LabelModels[4].EnglishDescription
                                 : responseData[0].SectionModels[1]
-                                    .LabelModels[4].ArabicDescription,
+                                  .LabelModels[4].ArabicDescription,
+                            ),
                           }}
                         />
 
@@ -401,47 +401,47 @@ const Homepage = () => {
                       <div
                         className="craftTxt_1 f-s-20 font-Lyon clr-pink-light"
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: DOMPurify.sanitize(
                             language === "en"
                               ? responseData[0].SectionModels[2].LabelModels[1]
-                                  .EnglishDescription
+                                .EnglishDescription
                               : responseData[0].SectionModels[2].LabelModels[1]
-                                  .ArabicDescription,
-                        }}
+                                .ArabicDescription,
+                       ),  }}
                       />
                       <div
                         className="craftTxt_2 f-s-20 clr-pink-light"
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: DOMPurify.sanitize(
                             language === "en"
                               ? responseData[0].SectionModels[2].LabelModels[2]
-                                  .EnglishDescription
+                                .EnglishDescription
                               : responseData[0].SectionModels[2].LabelModels[2]
-                                  .ArabicDescription,
-                        }}
+                                .ArabicDescription,
+                      ),   }}
                       />
 
                       <div
                         className="craftTxt_3 clr-pink-light mrg-b-30"
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: DOMPurify.sanitize(
                             language === "en"
                               ? responseData[0].SectionModels[2].LabelModels[3]
-                                  .EnglishDescription
+                                .EnglishDescription
                               : responseData[0].SectionModels[2].LabelModels[3]
-                                  .ArabicDescription,
-                        }}
+                                .ArabicDescription,
+                        ), }}
                       />
                       <div
                         className="craftTxt_3 clr-pink-light mrg-b-30"
                         dangerouslySetInnerHTML={{
-                          __html:
+                          __html: DOMPurify.sanitize(
                             language === "en"
                               ? responseData[0].SectionModels[2].LabelModels[4]
-                                  .EnglishDescription
+                                .EnglishDescription
                               : responseData[0].SectionModels[2].LabelModels[4]
-                                  .ArabicDescription,
-                        }}
+                                .ArabicDescription,
+                        ), }}
                       />
                       <div className="support_btn">
                         <button
@@ -473,25 +473,25 @@ const Homepage = () => {
                         <div
                           className="inspirationTxt_1 f-s-20 font-Lyon"
                           dangerouslySetInnerHTML={{
-                            __html:
+                            __html: DOMPurify.sanitize(
                               language === "en"
                                 ? responseData[0].SectionModels[3]
-                                    .LabelModels[0].EnglishDescription
+                                  .LabelModels[0].EnglishDescription
                                 : responseData[0].SectionModels[3]
-                                    .LabelModels[0].ArabicDescription,
-                          }}
+                                  .LabelModels[0].ArabicDescription,
+                        ),   }}
                         />
 
                         <div
                           className="inspirationTxt_1 f-s-30"
                           dangerouslySetInnerHTML={{
-                            __html:
+                            __html: DOMPurify.sanitize(
                               language === "en"
                                 ? responseData[0].SectionModels[3]
-                                    .LabelModels[1].EnglishDescription
+                                  .LabelModels[1].EnglishDescription
                                 : responseData[0].SectionModels[3]
-                                    .LabelModels[1].ArabicDescription,
-                          }}
+                                  .LabelModels[1].ArabicDescription,
+                          ), }}
                         />
                         {/* 
                       <div className="inspirationCont line_H_1_2 mrg-b-30 "
@@ -507,13 +507,13 @@ const Homepage = () => {
                         <div
                           className="inspirationCont line_H_1_2 mrg-b-30"
                           dangerouslySetInnerHTML={{
-                            __html:
+                            __html: DOMPurify.sanitize(
                               language === "en"
                                 ? responseData[0].SectionModels[3]
-                                    .LabelModels[3].EnglishDescription
+                                  .LabelModels[3].EnglishDescription
                                 : responseData[0].SectionModels[3]
-                                    .LabelModels[3].ArabicDescription,
-                          }}
+                                  .LabelModels[3].ArabicDescription,
+                         ),  }}
                         />
 
                         <div className="support_btn">
@@ -563,7 +563,7 @@ const Homepage = () => {
                   </div>
                 </div>
               </div>
-          <Location/>
+              <Location />
               <div className="home_section_seven secBg">
                 <div className="full-container container">
                   <div className="row">

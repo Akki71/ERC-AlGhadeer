@@ -152,6 +152,9 @@ function CartPage() {
       });
   };
   const fetchUserOrdersAndCheckQuantity = () => {
+      if (!UserID) {
+      return
+    }
     // Fetch user orders...
     const UserID = localStorage.getItem("UserID");
     const tokenlogin = localStorage.getItem("loginToken");
@@ -412,6 +415,9 @@ function CartPage() {
   const [shippingData, setShippingData] = useState(null);
   const [error, setError] = useState(null);
   useEffect(() => {
+    if (!UserID) {
+      return
+    }
     const apiUrl = `${BASE_PATH}Security/GetAllShippingCost`;
 
     fetch(apiUrl, {
@@ -559,9 +565,9 @@ function CartPage() {
           <div id="preloader">
             <div className="loader-logo mx-auto mrg-b-30"></div>
             <div className="loadingTxt text-center">
-              
-                <Loader />
-       
+
+              <Loader />
+
             </div>
           </div>
         </div>
@@ -671,7 +677,7 @@ function CartPage() {
                                             : order.SubCategoryNameA}
                                         </div>
                                         {order.ProductAvailableQuantity <
-                                        order.OrderQuantity ? (
+                                          order.OrderQuantity ? (
                                           <h6 className="error-message">
                                             {language === "en"
                                               ? "Out of Stock"
@@ -790,45 +796,45 @@ function CartPage() {
                                       <td className="text-center" data-label="">
                                         {order.ProductColorOrdered
                                           ? (() => {
-                                              try {
-                                                const colorOrdered = JSON.parse(
-                                                  order.ProductColorOrdered
-                                                );
-                                                if (
-                                                  colorOrdered &&
-                                                  colorOrdered.ImagePath
-                                                ) {
-                                                  // Replace old URL with the new URL
-                                                  const updatedImagePath =
-                                                    colorOrdered.ImagePath.replace(
-                                                      "http://192.168.17.172:81/",
-                                                      BASE_PATH
-                                                    );
-                                                  return (
-                                                    <div className="circle mx-auto">
-                                                      <img
-                                                        src={updatedImagePath}
-                                                        alt={
-                                                          colorOrdered.ProductColorNameE
-                                                        }
-                                                        style={{
-                                                          width: "100%",
-                                                          height: "100%",
-                                                        }}
-                                                      />
-                                                    </div>
+                                            try {
+                                              const colorOrdered = JSON.parse(
+                                                order.ProductColorOrdered
+                                              );
+                                              if (
+                                                colorOrdered &&
+                                                colorOrdered.ImagePath
+                                              ) {
+                                                // Replace old URL with the new URL
+                                                const updatedImagePath =
+                                                  colorOrdered.ImagePath.replace(
+                                                    "http://192.168.17.172:81/",
+                                                    BASE_PATH
                                                   );
-                                                } else {
-                                                  return " ";
-                                                }
-                                              } catch (error) {
-                                                console.error(
-                                                  "Error parsing ProductColorOrdered:",
-                                                  error
+                                                return (
+                                                  <div className="circle mx-auto">
+                                                    <img
+                                                      src={updatedImagePath}
+                                                      alt={
+                                                        colorOrdered.ProductColorNameE
+                                                      }
+                                                      style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                      }}
+                                                    />
+                                                  </div>
                                                 );
+                                              } else {
                                                 return " ";
                                               }
-                                            })()
+                                            } catch (error) {
+                                              console.error(
+                                                "Error parsing ProductColorOrdered:",
+                                                error
+                                              );
+                                              return " ";
+                                            }
+                                          })()
                                           : " "}
                                       </td>
 

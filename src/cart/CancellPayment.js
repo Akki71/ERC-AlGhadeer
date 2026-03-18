@@ -163,7 +163,7 @@ const CancellPayment = ({total}) => {
             })
             .catch((error) => {
                 setError(error);
-                navigate("/login")
+                // navigate("/login")
             });
     };
 

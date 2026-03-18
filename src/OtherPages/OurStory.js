@@ -7,7 +7,7 @@ import BASE_PATH from '../serviceurls';
 import Loader from "../components/Loader";
 import { useLanguage } from '../redux/LanguageContext';
 import Location from "../components/Location";
-
+import DOMPurify from "dompurify";
 
 function OurStory() {
   const [responseData, setResponseData] = useState(null);
@@ -74,11 +74,11 @@ function OurStory() {
                   >
                     <div className="inspirationTxt_1 f-s-20 font-Lyon"
                       dangerouslySetInnerHTML={{
-                        __html:
+                        __html: DOMPurify.sanitize(
                           language === "en"
                             ? responseData[0].SectionModels[0].LabelModels[0].EnglishDescription
                             : responseData[0].SectionModels[0].LabelModels[0].ArabicDescription
-                      }}
+                    ),   }}
                     />
 
                     {/* <div className="inspirationTxt_1 f-s-30"
@@ -92,11 +92,11 @@ function OurStory() {
 
                     <div className="inspirationCont line_H_1_2 mrg-b-30"
                       dangerouslySetInnerHTML={{
-                        __html:
+                        __html: DOMPurify.sanitize(
                           language === "en"
                             ? responseData[0].SectionModels[0].LabelModels[2].EnglishDescription
                             : responseData[0].SectionModels[0].LabelModels[2].ArabicDescription
-                      }}
+                     ),  }}
                     />
 
                   </div>
@@ -219,21 +219,21 @@ function OurStory() {
                   >
                     <div className="ourTxt mrg-b-20 clr-pink-light font-Lyon line_H_1_2"
                       dangerouslySetInnerHTML={{
-                        __html:
+                        __html: DOMPurify.sanitize(
                           language === "en"
                             ? responseData[0].SectionModels[1].LabelModels[2].EnglishDescription
                             : responseData[0].SectionModels[1].LabelModels[2].ArabicDescription
-                      }}
+                     ),  }}
                     />
 
                     <div className="ourTxt mrg-b-20 clr-pink-light line_H_1_2"
                       dangerouslySetInnerHTML={{
-                        __html:
+                        __html: DOMPurify.sanitize(
 
                           language === "en"
                             ? responseData[0].SectionModels[1].LabelModels[3].EnglishDescription
                             : responseData[0].SectionModels[1].LabelModels[3].ArabicDescription
-                      }
+                       ),}
                       }
                     />
 

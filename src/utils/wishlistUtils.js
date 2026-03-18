@@ -51,7 +51,7 @@ const handleAddToWishlist = async (ProductId, SubCategoryId, CategoryId, UserID,
             setActiveWishlistProducts(prevProducts => prevProducts.filter(id => id !== ProductId));
         }
     
-        const data = await response.json();
+        // const data = await response.json();
         // console.log("Added to Wishlist:", data);
         setIsWishlist(true);
     } catch (error) {

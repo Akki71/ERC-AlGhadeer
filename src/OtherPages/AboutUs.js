@@ -8,7 +8,7 @@ import BASE_PATH from '../serviceurls';
 import Loader from "../components/Loader";
 import { useLanguage } from "../redux/LanguageContext";
 import Location from "../components/Location";
-
+import DOMPurify from "dompurify";
 
 const AboutUs = () => {
   const [responseData, setResponseData] = useState(null);
@@ -85,11 +85,11 @@ const AboutUs = () => {
               >
                 <div className="secTitle f-s-30 font-Lyon "
                  dangerouslySetInnerHTML={{
-                  __html:
+                  __html: DOMPurify.sanitize(
                   language === "en" 
                   ?responseData[0].SectionModels[1].LabelModels[0].EnglishDescription
                   :responseData[0].SectionModels[1].LabelModels[0].ArabicDescription  
-                   }}
+                   ), }}
               />
               </div>
             </div>
@@ -177,11 +177,11 @@ const AboutUs = () => {
               <div data-aos="fade-up" data-aos-delay={300}>
                 <div className="ourTxt mrg-b-20 line_H_1_5 f-s-18"
                     dangerouslySetInnerHTML={{
-                      __html:
+                      __html: DOMPurify.sanitize(
                       language === "en" 
                       ?responseData[0].SectionModels[1].LabelModels[3].EnglishDescription
                       :responseData[0].SectionModels[1].LabelModels[3].ArabicDescription  
-                       }}
+                       ), }}
                 />
                
                

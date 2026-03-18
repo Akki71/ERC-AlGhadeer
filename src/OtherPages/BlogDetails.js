@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BASE_PATH from '../serviceurls';
 import { useLanguage } from '../redux/LanguageContext';
-
+import DOMPurify from "dompurify";
 const BlogDetails = () => {
 
 
@@ -46,8 +46,8 @@ const BlogDetails = () => {
                   </div>
                   <div className="txtSummary">
                     <div dangerouslySetInnerHTML={{
-                      __html: responseData[0].SectionModels[0].LabelModels.find(label => label.LabelName === "Description").EnglishDescription
-                    }} />
+                      __html: DOMPurify.sanitize( responseData[0].SectionModels[0].LabelModels.find(label => label.LabelName === "Description").EnglishDescription
+                   ),  }} />
                   </div>
                 </>
               )}
@@ -75,10 +75,10 @@ const BlogDetails = () => {
                             <div className="col-6">
                               <div className="recentBlog_title">
                                 <a className="primary-clr line_H_1_2 d-block" dangerouslySetInnerHTML={{
-                                  __html: language === "en"
+                                  __html: DOMPurify.sanitize( language === "en"
                                     ? section.LabelModels.find(label => label.LabelName === "Title").EnglishDescription
                                     : section.LabelModels.find(label => label.LabelName === "Title").ArabicDescription
-                                }} />
+                                ), }} />
                               </div>
                             </div>
                           </li>

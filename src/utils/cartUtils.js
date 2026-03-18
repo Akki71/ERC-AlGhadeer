@@ -31,7 +31,7 @@ const HandleAddToCart = async (product, quantitya, language, tokenlogin, UserID,
         const response = await fetch(apiUrl, requestOptions);
 
         if (response.ok) {
-            const data = await response.json();
+            // const data = await response.json();
             setActiveCartProducts(prevProducts => [...prevProducts, product.ProductId]);
             
             // console.log("Add to Cart Response:", data.ProductId);

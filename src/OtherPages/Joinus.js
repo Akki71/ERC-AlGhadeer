@@ -3,7 +3,7 @@ import { useLanguage } from "../redux/LanguageContext";
 import BASE_PATH, { ERC_ReCAPTCHA } from "../serviceurls";
 import ReCAPTCHA from "react-google-recaptcha";
 import Loader from "../components/Loader";
- 
+ import DOMPurify from "dompurify";
 const Joinus = () => {
   const { language } = useLanguage();
   const [showReCAPTCHA, setShowReCAPTCHA] = useState(false);
@@ -215,11 +215,11 @@ const Joinus = () => {
                   <div className="ourCraft_bx">
                     <div className="craftTitle f-s-30 font-Lyon mrg-b-10"
                     dangerouslySetInnerHTML={{
-                  __html:
+                  __html: DOMPurify.sanitize(
                   language === "en"
                   ?Data[0].SectionModels[0].LabelModels[0].EnglishDescription
                   :Data[0].SectionModels[0].LabelModels[0].ArabicDescription  
-                   }}
+                   ), }}
               />
                     {/* </div> */}
                     {/* <div className="craftSummary text-justify">
@@ -253,11 +253,11 @@ const Joinus = () => {
                     <div className="craftSummary text-justify"
                      
                        dangerouslySetInnerHTML={{
-                  __html:
+                  __html: DOMPurify.sanitize(
                   language === "en"
                   ?Data[0].SectionModels[0].LabelModels[2].EnglishDescription
                   :Data[0].SectionModels[0].LabelModels[2].ArabicDescription  
-                   }}
+                  ),  }}
               />
                     <div className="craftSummary text-justify"></div>
                   </div>
@@ -280,11 +280,11 @@ const Joinus = () => {
                   <div className="ourCraft_bx">
                     <div className="craftTitle f-s-30 font-Lyon mrg-b-10"
                     dangerouslySetInnerHTML={{
-                  __html:
+                  __html: DOMPurify.sanitize(
                   language === "en"
                   ?Data[0].SectionModels[0].LabelModels[1].EnglishDescription
                   :Data[0].SectionModels[0].LabelModels[1].ArabicDescription  
-                   }}
+                  ),  }}
               />                  
                 {/* </div> */}
                     {/* <div className="craftSummary">
@@ -297,11 +297,11 @@ const Joinus = () => {
                     </div> */}
                     <div className="craftSummary"
                     dangerouslySetInnerHTML={{
-                  __html:
+                  __html: DOMPurify.sanitize(
                   language === "en"
                   ?Data[0].SectionModels[0].LabelModels[3].EnglishDescription
                   :Data[0].SectionModels[0].LabelModels[3].ArabicDescription  
-                   }}
+                   ), }}
               />
                   </div>
                 </div>

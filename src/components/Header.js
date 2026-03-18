@@ -54,6 +54,9 @@ const Header = () => {
   const navigate = useNavigate();
  
   const fetchUserDetails = async () => {
+      if (!UserID) {
+      return
+    }
     try {
       const apiUrlUser = `${BASE_PATH}Security/GetUserById?id=${UserID}`;
 
@@ -133,6 +136,7 @@ const Header = () => {
       const products = JSON.parse(localStorage.getItem("guestProduct")) || [];
       setData(products.length);
       // console.log(products.length);
+      return
     }
     try {
       const cartApiUrl = `${BASE_PATH}Order/GetAllUserOrdersInCartByUserId?userId=${UserID}`;

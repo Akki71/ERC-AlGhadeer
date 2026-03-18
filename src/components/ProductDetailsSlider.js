@@ -11,6 +11,7 @@ import { DataContext } from "../utils/ApiContext";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import BASE_PATH from '../serviceurls';
+import DOMPurify from "dompurify";
 import { useLanguage } from '../redux/LanguageContext';
 function ProductsDetails() {
  
@@ -262,7 +263,9 @@ function ProductsDetails() {
  
  
   const fetchWishlistData = async () => {
- 
+  if (!UserID) {
+      return
+    }
     const apiUrl = `${BASE_PATH}Wishlist/GetWishlistByUserId/${UserID}`;
  
     try {
@@ -934,10 +937,10 @@ function ProductsDetails() {
                             {language === "en" ? "Description" : "الوصف "}
                           </div>
                           <p dangerouslySetInnerHTML={{
-                            __html: language === "en"
+                            __html: DOMPurify.sanitize( language === "en"
                               ? product.ProductDescE
                               : product.ProductDescA
-                          }} />
+                         ),  }} />
                         </div>
                         <div className="op-pro-discr con-brdB">
                           <div className="font-Lyon">
@@ -945,10 +948,10 @@ function ProductsDetails() {
                           </div>
  
                           <p dangerouslySetInnerHTML={{
-                            __html: language === "en"
+                            __html: DOMPurify.sanitize( language === "en"
                               ? product.PackagingDetailsE
                               : product.PackagingDetailsA
-                          }} />
+                         ),  }} />
  
                         </div>
                         <div className="op-pro-discr con-brdB">
@@ -957,10 +960,10 @@ function ProductsDetails() {
                             {language === "en" ? "Package Details and Dimensions" : "الوصف "}
                           </div>
                           <p dangerouslySetInnerHTML={{
-                            __html: language === "en"
+                            __html: DOMPurify.sanitize( language === "en"
                               ? product.ProductInfoE
                               : product.ProductInfoA
-                          }} />
+                         ),  }} />
                         </div>
  
                         <div className="op-pro-discr">

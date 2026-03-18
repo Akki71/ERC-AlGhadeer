@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  {  useEffect } from 'react';
 import BASE_PATH from '../serviceurls';
 
 function GetProducts({ setProducts }) {

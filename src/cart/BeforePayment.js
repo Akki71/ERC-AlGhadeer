@@ -162,7 +162,7 @@ const BeforePayment = ({mcoid,total}) => {
             })
             .catch((error) => {
                 setError(error);
-                navigate("/login")
+                // navigate("/login")
             });
     };
 

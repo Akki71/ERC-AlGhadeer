@@ -6,7 +6,7 @@ import dashboard from "../assets/images/dashboard-bg.jpg";
 import Loader from "../components/Loader";
 import { useLanguage } from "../redux/LanguageContext";
 import TokenPage from "../utils/TokenPage";
-
+import DOMPurify from "dompurify";
 const Workshops = () => {
   const [loading, setLoading] = useState(true);
   const [getToken, setGetToken] = useState(localStorage.getItem("token"));
@@ -199,7 +199,7 @@ const fetchData = async () => {
                       <div className="d-flex gap-3 justify-content-between">
                         <div
                           className="f-s-20"
-                          dangerouslySetInnerHTML={{ __html: item.Description }}
+                          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize( item.Description  ),}}
                         ></div>
                         <div className="f-s-20 font-Lyon">
                           {item.DescriptionPrice || "N/A"}

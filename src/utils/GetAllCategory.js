@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import BASE_PATH from "../serviceurls";
 
 function GetAllCategories({ setAllCategory }) {
