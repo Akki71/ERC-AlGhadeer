@@ -3,7 +3,7 @@ window.isMastercardScriptLoaded = false;
 function checkMastercardLoaded() {
   if (window.Checkout) {
     window.isMastercardScriptLoaded = true;
-    // console.log("✅ Mastercard loaded");
+    // console.log(" Mastercard loaded");
   } else {
     console.warn("⚠️ Mastercard not yet loaded");
   }
@@ -16,7 +16,7 @@ function isLocalhost() {
   );
 }
 
-// ✅ Handle page type (robust)
+//  Handle page type (robust)
 function updateBodyClass() {
   const body = document.body;
   const path = window.location.pathname.replace(/\/+$/, ""); // remove trailing slash
@@ -30,7 +30,7 @@ function updateBodyClass() {
   }
 }
 
-// ✅ Run on initial load
+//  Run on initial load
 document.addEventListener("DOMContentLoaded", function () {
   updateBodyClass();
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const interval = setInterval(() => {
     if (window.Checkout) {
       window.isMastercardScriptLoaded = true;
-      console.log("✅ Mastercard loaded (retry success)");
+      // console.log(" Mastercard loaded (retry success)");
       clearInterval(interval);
     } else if (retries > 10) {
       console.error("❌ Mastercard Checkout failed after retries");
