@@ -1,13 +1,11 @@
-
 window.isMastercardScriptLoaded = false;
-
 
 function checkMastercardLoaded() {
   if (window.Checkout) {
     window.isMastercardScriptLoaded = true;
-    console.log("Mastercard loaded (detected via global)");
+    // console.log("✅ Mastercard loaded");
   } else {
-    console.error("Mastercard NOT loaded");
+    console.warn("⚠️ Mastercard not yet loaded");
   }
 }
 
@@ -18,25 +16,54 @@ function isLocalhost() {
   );
 }
 
-
-document.addEventListener("DOMContentLoaded", function () {
+// ✅ Handle page type (robust)
+function updateBodyClass() {
   const body = document.body;
+  const path = window.location.pathname.replace(/\/+$/, ""); // remove trailing slash
 
-
-  if (window.location.hostname === "www.alghadeeruaecrafts.ae") {
+  if (path === "" || path === "/index.html") {
     body.classList.add("home-pg");
     body.classList.remove("sub-page");
   } else {
     body.classList.remove("home-pg");
     body.classList.add("sub-page");
   }
+}
 
-  checkMastercardLoaded();
+// ✅ Run on initial load
+document.addEventListener("DOMContentLoaded", function () {
+  updateBodyClass();
 
-
-  setTimeout(() => {
-    if (!window.Checkout) {
-      console.error("Mastercard Checkout script timeout.");
+  // Retry Mastercard check (important for slow networks)
+  let retries = 0;
+  const interval = setInterval(() => {
+    if (window.Checkout) {
+      window.isMastercardScriptLoaded = true;
+      console.log("✅ Mastercard loaded (retry success)");
+      clearInterval(interval);
+    } else if (retries > 10) {
+      console.error("❌ Mastercard Checkout failed after retries");
+      clearInterval(interval);
     }
-  }, 5000);
+    retries++;
+  }, 500);
 });
+
+
+// ✅ Handle SPA navigation (VERY IMPORTANT for React)
+(function () {
+  const pushState = history.pushState;
+  const replaceState = history.replaceState;
+
+  history.pushState = function () {
+    pushState.apply(history, arguments);
+    updateBodyClass();
+  };
+
+  history.replaceState = function () {
+    replaceState.apply(history, arguments);
+    updateBodyClass();
+  };
+
+  window.addEventListener("popstate", updateBodyClass);
+})();
