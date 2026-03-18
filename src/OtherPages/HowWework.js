@@ -5,7 +5,7 @@ import whoweare from "../assets/images/who-we-are-img-1.jpg"
 import ourfounder from "../assets/images/our-founder-1-1.jpg"
 import handleClick from '../components/links';
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
 import Location from '../components/Location';

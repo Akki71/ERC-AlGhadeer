@@ -1,5 +1,5 @@
 // wishlistUtils.js
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 
 const handleAddToWishlist = async (ProductId, SubCategoryId, CategoryId, UserID, tokenlogin, language, navigate, toast, setActiveWishlistProducts, setIsWishlist) => {
     const apiUrl = `${BASE_PATH}Wishlist/AddWishlist`;

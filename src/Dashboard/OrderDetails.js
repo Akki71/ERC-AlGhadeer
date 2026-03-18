@@ -3,7 +3,7 @@ import AL_Ghadeer_logo from "../assets/images/collection-img-1.jpg";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState, useContext } from "react";
 import Loader from "../components/Loader";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import { DataContext } from "../utils/ApiContext";
 import "font-awesome/css/font-awesome.min.css";
 import "../global.css";

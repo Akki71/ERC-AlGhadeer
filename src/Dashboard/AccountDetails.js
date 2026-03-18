@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DashboardNav from "./DashboardNav";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 
 import Loader from '../components/Loader';
 import { useLanguage } from "../redux/LanguageContext";

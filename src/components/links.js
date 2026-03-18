@@ -1,5 +1,5 @@
 import React from 'react'
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
  
 const handleClick = () => {
     const body = document.body;

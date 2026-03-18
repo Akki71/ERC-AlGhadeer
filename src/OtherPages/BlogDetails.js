@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 import DOMPurify from "dompurify";
 const BlogDetails = () => {

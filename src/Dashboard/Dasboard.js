@@ -2,7 +2,7 @@ import React, {
   useEffect, useState, useContext
 } from 'react';
 import { DataContext } from "../utils/ApiContext";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import DashboardNav from './DashboardNav';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
 import Loader from '../components/Loader';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from "../redux/LanguageContext";
 
 const Password = () => {

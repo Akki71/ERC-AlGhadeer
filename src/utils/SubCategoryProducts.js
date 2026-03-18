@@ -1,5 +1,5 @@
 import {  useEffect } from 'react';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 
 function SubCategoryProducts({ setSubCategoryProducts }) {
   const token = localStorage.getItem('token');

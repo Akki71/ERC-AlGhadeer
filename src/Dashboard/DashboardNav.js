@@ -3,7 +3,7 @@ import React,{useEffect,useContext} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 import { DataContext } from "../utils/ApiContext";
  

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import BASE_PATH from '../serviceurls';
+import {AUTH_PAYLOAD, BASE_PATH} from "../serviceurls";
 
 function TokenPage({ setGetToken }) {
  
@@ -8,18 +8,14 @@ function TokenPage({ setGetToken }) {
     const fetchToken = async () => {
       // localStorage.removeItem("token");
       try {
-        const postData = {
-          'UserName': 'GHADEER',
-          'Password': 'GHADEER123',
-          'GrantType': 'password'
-        };
+    
 
         const response = await fetch(`${BASE_PATH}Security/GetToken`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(postData),
+          body: JSON.stringify(AUTH_PAYLOAD),
         });
 
         if (!response.ok) {

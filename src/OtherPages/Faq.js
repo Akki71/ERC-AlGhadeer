@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import handleClick from "../components/links";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import Loader from "../components/Loader";
 import { useLanguage } from "../redux/LanguageContext";
 

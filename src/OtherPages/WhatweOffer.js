@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import dashboard_bg from "../assets/images/dashboard-bg.jpg";
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 import { PencilFill, Gear,List,ArrowRepeat,CloudDownload ,Headphones,Layers } from 'react-bootstrap-icons';
 import Loader from '../components/Loader';

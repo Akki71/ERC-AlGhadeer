@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import AuthService from "./AuthService";
 import { DataContext } from "../utils/ApiContext";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from "../redux/LanguageContext";
 const Login = () => {
   const UserID = localStorage.getItem("UserID");

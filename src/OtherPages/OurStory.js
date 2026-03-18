@@ -3,7 +3,7 @@ import our_vision_logo from "../assets/images/our-vision-logo.png";
 import OurStorySlider from "../components/OurStory.slider";
 import Partner from "../components/Partner";
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import Loader from "../components/Loader";
 import { useLanguage } from '../redux/LanguageContext';
 import Location from "../components/Location";

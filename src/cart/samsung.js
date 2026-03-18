@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 
 // Load Samsung Pay SDK
 const loadSamsungPaySDK = () => {
@@ -15,32 +15,32 @@ const SamsungPay = () => {
 
     let samsungPayClient;
 
-    const initializeSamsungPay = () => {
-      if (!window.SamsungPay) {
-        console.error("Samsung Pay SDK not loaded");
-        return;
-      }
+    // const initializeSamsungPay = () => {
+    //   if (!window.SamsungPay) {
+    //     console.error("Samsung Pay SDK not loaded");
+    //     return;
+    //   }
 
-      samsungPayClient = new window.SamsungPay.PaymentClient({ environment: "STAGE" });
+    //   samsungPayClient = new window.SamsungPay.PaymentClient({ environment: "STAGE" });
 
-      const paymentMethods = {
-        version: "2",
-        serviceId: "7530ca8cc6624e029bf7a6",
-        protocol: "PROTOCOL_3DS",
-        allowedBrands: ["visa", "mastercard"],
-      };
+    //   const paymentMethods = {
+    //     version: "2",
+    //     serviceId: "7530ca8cc6624e029bf7a6",
+    //     protocol: "PROTOCOL_3DS",
+    //     allowedBrands: ["visa", "mastercard"],
+    //   };
 
-      // Check if Samsung Pay is ready to use
-      samsungPayClient.isReadyToPay(paymentMethods)
-        .then((response) => {
-          if (response.result) {
-            createAndAddButton(samsungPayClient, paymentMethods);
-          } else {
-            console.error("Samsung Pay is not ready to pay.");
-          }
-        })
-        .catch((err) => console.error("Error checking Samsung Pay readiness:", err));
-    };
+    //   // Check if Samsung Pay is ready to use
+    //   samsungPayClient.isReadyToPay(paymentMethods)
+    //     .then((response) => {
+    //       if (response.result) {
+    //         createAndAddButton(samsungPayClient, paymentMethods);
+    //       } else {
+    //         console.error("Samsung Pay is not ready to pay.");
+    //       }
+    //     })
+    //     .catch((err) => console.error("Error checking Samsung Pay readiness:", err));
+    // };
 
     const createAndAddButton = (client, paymentMethods) => {
       const samsungPayButton = client.createButton({
@@ -90,7 +90,7 @@ const SamsungPay = () => {
     const sdkLoadInterval = setInterval(() => {
       if (window.SamsungPay) {
         clearInterval(sdkLoadInterval);
-        initializeSamsungPay();
+        // initializeSamsungPay();
       }
     }, 100);
 

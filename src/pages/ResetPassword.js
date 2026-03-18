@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { ToastContainer, toast } from "react-toastify";
 

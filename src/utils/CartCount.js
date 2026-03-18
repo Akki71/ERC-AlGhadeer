@@ -1,7 +1,7 @@
 // CartCount.js
 import React, { useState, useEffect } from 'react';
 import reducer from '../redux/countReducer'; 
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 
 const initialState = {
   count: reducer().count // Accessing initial state from the reducer

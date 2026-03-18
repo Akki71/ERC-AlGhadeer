@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { ToastContainer, toast } from "react-toastify";
 
 import { useLanguage } from '../redux/LanguageContext';

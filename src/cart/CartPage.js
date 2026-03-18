@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import { DataContext } from "../utils/ApiContext";
 import Loader from "../components/Loader";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from "../redux/LanguageContext";
 function CartPage() {
   const navigate = useNavigate();

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Trash } from 'react-bootstrap-icons';
 import Modal from "react-bootstrap/Modal";
 import Loader from '../components/Loader';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import UdateAddressModal from './AddressModal';
 import AddAddressModal from './AddAddress';
 import { useLanguage } from '../redux/LanguageContext';

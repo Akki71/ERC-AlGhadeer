@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Partner from "../components/Partner";
 import handleClick from "../components/links";
-import BASE_PATH from "../serviceurls";
+import {BASE_PATH,AUTH_PAYLOAD} from "../serviceurls";
 import dashboard from "../assets/images/dashboard-bg.jpg";
 import Loader from "../components/Loader";
 import { useLanguage } from "../redux/LanguageContext";
@@ -74,18 +74,14 @@ const fetchData = async () => {
   
   const fetchToken = async () => {
     try {
-      const postData = {
-        UserName: "GHADEER",
-        Password: "GHADEER123",
-        GrantType: "password",
-      };
+
 
       const response = await fetch(`${BASE_PATH}Security/GetToken`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(postData),
+          body: JSON.stringify(AUTH_PAYLOAD),
         }
       );
 

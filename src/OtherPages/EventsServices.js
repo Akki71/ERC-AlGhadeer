@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import dashboard_bg from "../assets/images/dashboard-bg.jpg";
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import BASE_PATH from "../serviceurls";
+import {BASE_PATH,AUTH_PAYLOAD} from "../serviceurls";
 import DOMPurify from "dompurify";
 import { useLanguage } from "../redux/LanguageContext";
 import {
@@ -122,18 +122,14 @@ const EventsServices = () => {
 
   const fetchToken = async () => {
     try {
-      const postData = {
-        UserName: "GHADEER",
-        Password: "GHADEER123",
-        GrantType: "password",
-      };
+    
 
       const response = await fetch(`${BASE_PATH}Security/GetToken`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(postData),
+        body: JSON.stringify(AUTH_PAYLOAD),
       }
       );
 
@@ -152,27 +148,6 @@ const EventsServices = () => {
       console.error("Error fetching token:", error);
     }
   };
-
-  // useEffect(() => {
-  //   if (getToken) {
-  //     fetchData();
-  //   }
-  // }, [getToken]);
-
-  // const firstSection = data[0]?.SectionModels.find(
-  //   (section) => section.SectionName === "FirstSec"
-  // );
-
-  // // Find the label with the HTML content
-  // const centerTitleLabel = firstSection?.LabelModels.find(
-  //   (label) => label.LabelName === "Center Title Text"
-  // );
-
-  // // Get the HTML content based on language
-  // const htmlContent =
-  //   language === "en"
-  //     ? centerTitleLabel?.EnglishDescription
-  //     : centerTitleLabel?.ArabicDescription;
 
   return (
     <>

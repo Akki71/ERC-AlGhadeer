@@ -9,7 +9,7 @@ import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import TokenPage from "../utils/TokenPage.js";
-import BASE_PATH from "../serviceurls.js";
+import {BASE_PATH,AUTH_PAYLOAD} from "../serviceurls.js";
 import Loader from "../components/Loader.js";
 import { useLanguage } from "../redux/LanguageContext";
 import Location from "../components/Location.js";
@@ -35,18 +35,14 @@ const Homepage = () => {
 
   const fetchToken = async () => {
     try {
-      const postData = {
-        UserName: "GHADEER",
-        Password: "GHADEER123",
-        GrantType: "password",
-      };
+   
 
       const response = await fetch(`${BASE_PATH}Security/GetToken`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(postData),
+      body: JSON.stringify(AUTH_PAYLOAD),
       }
       );
 

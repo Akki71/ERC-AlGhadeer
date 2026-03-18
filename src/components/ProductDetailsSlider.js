@@ -10,7 +10,7 @@ import Loader from './Loader';
 import { DataContext } from "../utils/ApiContext";
 import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import DOMPurify from "dompurify";
 import { useLanguage } from '../redux/LanguageContext';
 function ProductsDetails() {
@@ -1021,7 +1021,7 @@ export default memo(ProductsDetails);
 // import { DataContext } from "../utils/ApiContext";
 // import { Link } from "react-router-dom";
 // import Modal from "react-bootstrap/Modal";
-// import BASE_PATH from '../serviceurls';
+// import { BASE_PATH} from "../serviceurls";
 // import { useLanguage } from '../redux/LanguageContext';
 // function ProductsDetails() {
 

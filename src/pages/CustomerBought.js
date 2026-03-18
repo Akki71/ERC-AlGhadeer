@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import handleAddToWishlist from '../utils/wishlistUtils';
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';

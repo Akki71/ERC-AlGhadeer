@@ -1,4 +1,4 @@
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 
 const HandleAddToCart = async (product, quantitya, language, tokenlogin, UserID, navigate, toast, setActiveCartProducts) => {
     // console.log(quantitya);

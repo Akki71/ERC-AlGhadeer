@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 // import handleAddToCart from '../utils/cartUtils';
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 import { DataContext } from "../utils/ApiContext";
 import Loader from "../components/Loader"; // Import your loader component

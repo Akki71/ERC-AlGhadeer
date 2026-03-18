@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 
 function GetAllCategories({ setAllCategory }) {
   const token = localStorage.getItem("token");

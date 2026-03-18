@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../axiosInstance";
 import { useParams, Link } from "react-router-dom";
-
+import { getAuthPayload } from "../serviceurls";
 const SubCategory = () => {
   const { categoryId, subCategoryID } = useParams();
 
@@ -18,11 +18,7 @@ const SubCategory = () => {
       try {
         const response = await axiosInstance.post(
           "/OwinToken",
-          new URLSearchParams({
-            username: "GHADEER",
-            password: "GHADEER123",
-            grant_type: "password",
-          }).toString(),
+          getAuthPayload(USERNAME, PASSWORD),
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
@@ -127,9 +123,9 @@ const SubCategory = () => {
       <div>
         <div className="col-md-4 col-xl-2">
           <div className="filterBx">
-            <div className="categoeryTitle"> 
-            {language === "en"
-                                    ? "SubCategory"
+            <div className="categoeryTitle">
+              {language === "en"
+                ? "SubCategory"
                 : "تصنيف فرعي"}
             </div>
             <ul>

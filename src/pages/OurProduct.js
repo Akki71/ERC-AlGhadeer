@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import banner_logo from "../assets/images/banner-logo.png";
 import Partner from "../components/Partner";
 import ProductDetailsSlider from "../components/ProductDetailsSlider";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 import { useParams, Link, useNavigate } from "react-router-dom";
 import CustomerBought from "./CustomerBought";

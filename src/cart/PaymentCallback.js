@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useLanguage } from "../redux/LanguageContext";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 
 const PaymentCallback = () => {
   const { language } = useLanguage();

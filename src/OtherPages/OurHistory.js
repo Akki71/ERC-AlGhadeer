@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import dashboard_bg from "../assets/images/dashboard-bg.jpg";
 import Partner from "../components/Partner";
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 const OurHistory = () => {
 

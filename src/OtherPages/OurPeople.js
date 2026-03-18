@@ -3,7 +3,7 @@ import Partner from '../components/Partner';
 import team from '../assets/images/our-founder-1.jpg';
 import handleClick from '../components/links';
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
 

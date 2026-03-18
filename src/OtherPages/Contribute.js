@@ -10,7 +10,7 @@ import contribute_icon_3 from "../assets/images/contribute-icon-3.png";
 import contribute_icon_4 from "../assets/images/contribute-icon-4.png";
 import contribute_icon_5 from "../assets/images/contribute-icon-5.png";
 import contribute_icon_6 from "../assets/images/contribute-icon-6.png";
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 const Contribute = () => {
     useEffect(() => { handleClick() }, [handleClick])

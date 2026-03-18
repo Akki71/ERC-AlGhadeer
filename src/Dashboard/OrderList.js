@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 import { connect, useDispatch } from 'react-redux';
 import Loader from '../components/Loader'; 
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { DataContext } from "../utils/ApiContext";
 import { useLanguage } from '../redux/LanguageContext';
 const OrderList = () => {

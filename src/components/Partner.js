@@ -1,6 +1,6 @@
 import React, { Fragment, memo, useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 
 function Partner() {
   const [responseData, setResponseData] = useState(null);

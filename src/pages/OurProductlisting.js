@@ -6,7 +6,7 @@ import add_to_icon from "../assets/images/add-to-cart-icon.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import handleAddToCart from '../utils/cartUtils';
 import handleAddToWishlist from '../utils/wishlistUtils';
 import handleClick from '../components/links';

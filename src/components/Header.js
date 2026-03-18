@@ -6,7 +6,7 @@ import emirates_red_logo from "../assets/images/emirates-red-logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import handleClick from "./links";
 // import TokenPage from "../utils/TokenPage";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import { DataContext } from "../utils/ApiContext";
 import TokenPage from "../utils/TokenPage";
 import { ToastContainer, toast } from "react-toastify";

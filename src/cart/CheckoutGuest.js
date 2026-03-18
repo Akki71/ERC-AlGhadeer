@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Modal";
 import { DataContext } from "../utils/ApiContext";
-import BASE_PATH, { ERC_ReCAPTCHA } from "../serviceurls";
+import { BASE_PATH,ERC_ReCAPTCHA } from "../serviceurls";
 import axios from "axios";
 import Loader from "../components/Loader"; // Import your Loader component
 import { useLanguage } from "../redux/LanguageContext";

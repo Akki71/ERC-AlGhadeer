@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 
 const API_URL = `${BASE_PATH}Security`;

@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useState, useEffect } from 'react';
 import Slider from "react-slick";
 import our_vision_mob_bg from '../assets/images/our-vision-mob-bg.jpg';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import { useLanguage } from '../redux/LanguageContext';
 function OurStorySlider() {
   const [responseData, setResponseData] = useState(null);

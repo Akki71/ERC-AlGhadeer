@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { ToastContainer, toast } from "react-toastify";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import BASE_PATH from "../serviceurls";
+import { BASE_PATH} from "../serviceurls";
 import handleAddToCart from "../utils/cartUtils";
 import handleAddToWishlist from "../utils/wishlistUtils";
 import GetProducts from "../utils/GetProducts";

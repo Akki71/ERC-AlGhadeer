@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../redux/LanguageContext";
-import BASE_PATH, { ERC_ReCAPTCHA } from "../serviceurls";
+import { BASE_PATH,ERC_ReCAPTCHA } from "../serviceurls";
 import ReCAPTCHA from "react-google-recaptcha";
 import Loader from "../components/Loader";
  import DOMPurify from "dompurify";

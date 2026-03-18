@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import BASE_PATH from '../serviceurls';
+import { BASE_PATH} from "../serviceurls";
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
 import DOMPurify from "dompurify";
