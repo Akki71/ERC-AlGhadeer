@@ -11,9 +11,7 @@ import { useLanguage } from "../redux/LanguageContext";
 import BeforePayment from "./BeforePayment";
 import ReCAPTCHA from "react-google-recaptcha";
 import CancellPayment from "./CancellPayment";
-import SamsungPay from "./samsung";
 import applePayLogo from "../assets/images/apple128.png";
-import pngegg from "../assets/images/pngegg.png";
 
 import "./ApplePayButton.css";
 import { decryptData, encryptData } from "../utils/crypto";

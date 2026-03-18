@@ -5,7 +5,7 @@ function checkMastercardLoaded() {
     window.isMastercardScriptLoaded = true;
     // console.log(" Mastercard loaded");
   } else {
-    console.warn("⚠️ Mastercard not yet loaded");
+    console.warn(" Mastercard not yet loaded");
   }
 }
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// ✅ Handle SPA navigation (VERY IMPORTANT for React)
+//  Handle SPA navigation (VERY IMPORTANT for React)
 (function () {
   const pushState = history.pushState;
   const replaceState = history.replaceState;

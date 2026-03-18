@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import dashboard_bg from "../assets/images/dashboard-bg.jpg";
 import Partner from "../components/Partner";
-import whoweare from "../assets/images/who-we-are-img-1.jpg"
-import ourfounder from "../assets/images/our-founder-1-1.jpg"
 import handleClick from '../components/links';
-import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 import { BASE_PATH} from "../serviceurls";
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';

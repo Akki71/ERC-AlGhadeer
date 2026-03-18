@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import img1 from "../assets/images/product-img-6.png";
+import  { useEffect, useState, useContext } from "react";
 import add_to_cart_icon from "../assets/images/add-to-cart-icon.png";
 import add_to_wishlist_icon from "../assets/images/added-in-favorites.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,12 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 // import handleAddToCart from '../utils/cartUtils';
 import { BASE_PATH} from "../serviceurls";
-import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
 import { DataContext } from "../utils/ApiContext";
 import Loader from "../components/Loader"; // Import your loader component
 import { useLanguage } from '../redux/LanguageContext';
 import { Link, useNavigate } from "react-router-dom";
-import OurCrafts from "./OurCrafts";
+
 const Favorites = () => {
   const [wishlistData, setWishlistData] = useState([]);
 

@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Partner from '../components/Partner'
-import product_gallery_2 from "../assets/images/product-gallery-2.png";
-import handleClick from '../components/links';
-import AL_Ghadeer_logo from "../assets/images/AL-Ghadeer-logo.png";
-import { BASE_PATH} from "../serviceurls";
-import crafts5 from "../assets/images/5crafts.jpg";
-import crafts6 from "../assets/images/6crafts.jpg";
-import crafts7 from "../assets/images/7crafts.jpg";
 
-import dashboard from "../assets/images/dashboard-bg.jpg";
+import handleClick from '../components/links';
+import { BASE_PATH} from "../serviceurls";
 import Loader from '../components/Loader';
 import { useLanguage } from '../redux/LanguageContext';
 import DOMPurify from "dompurify";

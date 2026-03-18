@@ -289,7 +289,7 @@ const EventsServices = () => {
                       <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
-                            // src={require("../assets/images/al-ghadeer-2/tali.jpg")}
+                          
                             src={section.ImagePath}
 
                             alt="Demo"
@@ -305,85 +305,7 @@ const EventsServices = () => {
                     </div>
                   )}
 
-                  {/* <div className="col-md-6 col-lg-4">
-                <div className="workshopCard">
-                  <div className="workshopThumb">
-                    <img
-                      src={require("../assets/images/al-ghadeer-2/spinning.jpg")}
-                      alt="Demo"
-                    />
-                  </div>
-                  <div className="workshopText">
-                    <div className=" f-s-30 font-Lyon mrg-b-5 text-start line_H_1_2">
-                      {language === "en" ? "Sadu  " : "  السدو "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4">
-                <div className="workshopCard">
-                  <div className="workshopThumb">
-                    <img
-                      src={require("../assets/images/al-ghadeer-2/tarboush-making.jpg")}
-                      alt="Demo"
-                    />
-                  </div>
-                  <div className="workshopText">
-                    <div className=" f-s-30 font-Lyon mrg-b-5 text-start line_H_1_2">
-                      {language === "en"
-                        ? " Tarboush Making "
-                        : "  صناعة الطرابيش "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4">
-                <div className="workshopCard">
-                  <div className="workshopThumb">
-                    <img
-                      src={require("../assets/images/al-ghadeer-2/sadu.jpg")}
-                      alt="Demo"
-                    />
-                  </div>
-                  <div className="workshopText">
-                    <div className=" f-s-30 font-Lyon mrg-b-5 text-start line_H_1_2">
-                      {language === "en" ? " Sadu " : "  السدو "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4">
-                <div className="workshopCard">
-                  <div className="workshopThumb">
-                    <img
-                      src={require("../assets/images/al-ghadeer-2/burqa-making.jpg")}
-                      alt="Demo"
-                    />
-                  </div>
-                  <div className="workshopText">
-                    <div className=" f-s-30 font-Lyon mrg-b-5 text-start line_H_1_2">
-                      {language === "en"
-                        ? "   Burqa Making"
-                        : " صناعة البرقع  "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4">
-                <div className="workshopCard">
-                  <div className="workshopThumb">
-                    <img
-                      src={require("../assets/images/al-ghadeer-2/henna.jpg")}
-                      alt="Demo"
-                    />
-                  </div>
-                  <div className="workshopText">
-                    <div className=" f-s-30 font-Lyon mrg-b-5 text-start line_H_1_2">
-                      {language === "en" ? " Henna " : " الحنة  "}
-                    </div>
-                  </div>
-                </div>
-              </div> */}
+                
                 </div>
 
                 :
@@ -393,7 +315,7 @@ const EventsServices = () => {
                       <div className="workshopCard">
                         <div className="workshopThumb">
                           <img
-                            // src={require("../assets/images/al-ghadeer-2/tali.jpg")}
+                            
                             src={section.ImagePath}
 
                             alt="Demo"

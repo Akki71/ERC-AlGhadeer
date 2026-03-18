@@ -208,7 +208,7 @@ const Joinus = () => {
             alt="Image Alt Text"
            src={Data[0].SectionModels[0].LabelModels[4].MediaPath}
           />
-                    {/* <img src={require("../assets/images/Bitmap.jpg")} alt="" /> */}
+                   
                   </div>
                 </div>
                 <div className="col-lg-5 order-0">

@@ -24,6 +24,7 @@ function CartPage() {
   const { data, setData } = useContext(DataContext);
 
   const updateData = async () => {
+      //  console.log('in 3')
     if (!UserID) {
       const products = JSON.parse(localStorage.getItem("guestProduct")) || [];
       setData(products.length);
@@ -56,6 +57,7 @@ function CartPage() {
   };
 
   useEffect(() => {
+    // console.log('in 1')
     updateData();
     const UserID = localStorage.getItem("UserID");
     const tokenlogin = localStorage.getItem("loginToken");
@@ -152,13 +154,14 @@ function CartPage() {
       });
   };
   const fetchUserOrdersAndCheckQuantity = () => {
-      if (!UserID) {
-      return
-    }
+   
     // Fetch user orders...
     const UserID = localStorage.getItem("UserID");
     const tokenlogin = localStorage.getItem("loginToken");
-
+    // console.log('in 2')
+      if (!UserID) {
+      return
+    }
     // Check if UserID and tokenlogin exist
 
     const apiUrl = `${BASE_PATH}Order/GetAllUserOrdersInCartByUserId?userId=${UserID}`;
@@ -190,7 +193,8 @@ function CartPage() {
         setUserOrders(data);
         setcon(false);
         const quantities = data.map((item) => item.ProductAvailableQuantity);
-
+     setLoader(false);
+      setLoading(false);
         if (quantities.some((value) => value < 1)) {
           // console.log("There is at least one value less than 1 in the array.");
           setProductQuantity(true);

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import handleClick from '../components/links';
 
 import Partner from '../components/Partner'
-import dashboard_bg from "../assets/images/dashboard-bg.jpg";
 import contribute_icon_1 from "../assets/images/contribute-icon-1.png";
 import contribute_icon_2 from "../assets/images/contribute-icon-2.png";
 import contribute_icon_3 from "../assets/images/contribute-icon-3.png";
